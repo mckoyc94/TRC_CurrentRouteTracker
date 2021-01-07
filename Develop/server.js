@@ -1,5 +1,6 @@
 const express = require('express');
-const mongojs = require('mongojs');
+const mongoose = require("mongoose");
+
 
 const PORT = process.env.PORT || 6060;
 const app = express();
@@ -8,12 +9,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static("public"));
 
-const database = 'Collection';
-const collections = ['Routes'];
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/routes");
 
-const db = mongojs(database, collections);
-
-require("./Develop/routes/html-routes")(app)
+require("./routes/html-routes")(app)
 
 app.listen(PORT, ()=> {
     console.log("Listening on PORT %", PORT)
