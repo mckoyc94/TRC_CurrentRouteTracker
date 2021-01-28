@@ -19,7 +19,12 @@ const boulderSchema = new Schema({
     }, 
     location: {
         type: String
+    },
+    targetGrade: {
+        type: String
     }
 })
 
 const Boulders = mongoose.model("Boulders", boulderSchema)
+
+module.exports = Boulders
