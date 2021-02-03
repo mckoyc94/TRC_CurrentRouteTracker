@@ -27,10 +27,30 @@
   </nav>
 
   <main class="container">
-    <div class="row">
+    <!-- Header -->
+    <header class="row">
       <div class="col-lg-12">
         <h1 class ="home">Welcome to the Rock Club's <br><strong>Current Route Tracker</strong></br></h1>
-        <img src ="./Assets/TRC_Reverse_Logo.jpg" alt = "logo">
+        <div class="d-flex justify-content-center">
+          <img src ="./Assets/App Logo.jpg" alt = "logo" id = "logo" class = "d-flex justify-content-center">
+        </div>
+      </div>
+    </header>
+    <!-- Quick Stats -->
+    <div class="row">
+      <div class="col-lg-8">
+        <canvas id="myChart"></canvas>
+      </div>
+      <div class="col-lg-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Today's Date</h5>
+            <h6 class="card-subtitle mb-2 text-muted"></h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="card-link">Add a Route</a>
+            <a href="#" class="card-link">Current Routes</a>
+          </div>
+        </div>
       </div>
     </div>
   </main>

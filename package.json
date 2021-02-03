@@ -1,0 +1,23 @@
+{
+  "name": "trc_currentroutetracker",
+  "version": "1.0.0",
+  "description": "A simple webapp that helps track the current routes in the Rock Club.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mckoyc94/TRC_CurrentRouteTracker.git"
+  },
+  "keywords": [
+    "Climbing",
+    "Routesetting"
+  ],
+  "author": "mckoyc94",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mckoyc94/TRC_CurrentRouteTracker/issues"
+  },
+  "homepage": "https://github.com/mckoyc94/TRC_CurrentRouteTracker#readme"
+}
