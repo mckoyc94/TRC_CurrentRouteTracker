@@ -25,15 +25,34 @@
           <!-- Links to Other Pages -->
           <a class="nav-link" href="/">Home</a>
           <a class="nav-link" href="#">Current Routes</a>
-          <a class="nav-link active" aria-current="page" href="#">Add a Route</a>
+          <a class="nav-link active" aria-current="page" href="/addRoute">Add a Route</a>
         </div>
       </div>
     </div>
   </nav>
 
   <main class="container">
-      
+    <!-- Drop Down to Choose Type of Climb -->
+    <div class="dropdown mt-5">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Choose the Type of Climb
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item">Top Rope/Lead</a>
+        <a class="dropdown-item">Boulder</a>
+      </div>
+    </div>
+
+    <!-- Form to Add a Climb -->
+    <form class = "addClimb">
+      <div class = "form-row">
+        <div class="form-group col-md-12 center">
+          <h1>Add a Climb</h1>
+        </div>
+      </div>
+    </form>
   </main>
+
 <!-- Bootstrap & JQuery Links -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>

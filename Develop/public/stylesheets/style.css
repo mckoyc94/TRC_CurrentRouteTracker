@@ -1,6 +1,14 @@
+form{
+    background-color: rgba(243, 234, 222, 0.829);
+    padding: 3%;
+}
 
-.home{
+.center{
     text-align: center;
+}
+
+.submit {
+    vertical-align: bottom;
 }
 
 #logo{
