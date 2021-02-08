@@ -11,14 +11,14 @@ const setterSchema = new Schema({
         type: String,
         required: "Please enter the Setter's initials"
     },
-    boulders: {
+    boulders: [{
         type: Schema.Types.ObjectId,
         ref: 'Boulders'
-    },
-    top_rope: {
+    }],
+    top_rope: [{
         type: Schema.Types.ObjectId,
         ref: "Top Rope"
-    }
+    }]
 })
 
 const Setter = mongoose.model("Setters", setterSchema)
