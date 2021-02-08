@@ -1,13 +1,16 @@
+// Variables
 const date = $('.card-subtitle')
 const ctx = document.getElementById('myChart').getContext('2d');
 
-date.text("Testing Weather")
+//
+date.text("Testing Date")
 
+// Chart Data
 const chart = new Chart(ctx, {
-    // The type of chart we want to create
+    // Chart Type
     type: 'bar',
 
-    // The data for our dataset
+    // Dataset
     data: {
         labels: ['7', '8', '9', '10a', '10b', '10c', '10d', '11a', '11b', '11c', '11d', '12a', '12b', '12c', '12d', '13a'],
         datasets: [{
@@ -18,6 +21,6 @@ const chart = new Chart(ctx, {
         }]
     },
 
-    // Configuration options go here
+    // Additional Options for Chart
     options: {}
 });
