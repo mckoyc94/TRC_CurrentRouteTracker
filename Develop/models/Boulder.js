@@ -7,18 +7,25 @@ const boulderSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    updatedAt: {
+        type: Date,
+        default: Date.now
+    },
     tapeColor: {
         type: String,
-        required: "Please Choose a Tape color"
+        required: "Please choose a tape color"
     },
     setter: {
-        type: String
+        type: String,
+        required: "Please choose a Setter"
     },
     climbColor : {
-        type: String
+        type: String,
+        required: "Please designate the climb color"
     }, 
     location: {
-        type: String
+        type: String,
+        required: "Please designate where the climb was set"
     },
     targetGrade: {
         type: String

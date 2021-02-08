@@ -1,5 +1,5 @@
 const db = require('../models');
-const {Boulder, TopRope} = db
+const {Boulder, TopRope, Setter} = db
 
 module.exports = (app) => {
     app.get('/api/boulders', (req, res) => {
@@ -27,6 +27,20 @@ module.exports = (app) => {
         TopRope.create(body)
         .then(dbTR => {
             res.json(dbTR)
+        })
+    })
+
+    app.get('/api/setters', (req, res) => {
+        Setter.find({})
+        .then(dbSetter => {
+            res.json(dbSetter)
+        })
+    })
+
+    app.post('/api/setters', ({body}, res) => {
+        Setter.create(body)
+        .then(dbSetter => {
+            res.json(dbSetter)
         })
     })
 }

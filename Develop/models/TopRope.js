@@ -12,13 +12,16 @@ const topRopeSchema = new Schema({
         required: "Please Choose a Tape color"
     },
     setter: {
-        type: String
+        type: String,
+        required: "Please choose a Setter"
     },
     climbColor : {
-        type: String
+        type: String,
+        required: "Please designate the climb color"
     }, 
     wall: {
-        type: String
+        type: String,
+        required: "Please designate where the climb was set"
     },
     targetGrade: {
         type: String
