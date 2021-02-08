@@ -24,8 +24,10 @@ const topRopeSchema = new Schema({
         type: String,
         required: "Please designate where the climb was set"
     },
-    targetGrade: {
-        type: String
+    targetGrade:String,
+    active: {
+        type: Boolean,
+        default: true
     }
 })
 
