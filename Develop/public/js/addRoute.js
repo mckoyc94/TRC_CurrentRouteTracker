@@ -8,13 +8,21 @@ const rowTwo = $('<div>').addClass('form-row')
 const routeColor = $('<div>').addClass('form-group col-md-4')
 const routeLabel = $('<label>').val("Climb Color")
 const routeInput = $('<select>').addClass('form-control').attr('id', 'holds')
-const location = $('<div>').addClass('form-group col-md-4')
+const locations = $('<div>').addClass('form-group col-md-4')
 const locationLabel = $('<label>').val("Location")
 const locationInput = $('<select>').addClass('form-control').attr('id', 'location')
 const setter = $('<div>').addClass('form-group col-md-6')
 const setterLabel = $('<label>').val("Setter")
 const setterInput = $('<select>').addClass('form-control').attr('id', 'setter')
 const submit = $('<button>').addClass('btn btn-primary').attr('id', 'submit')
+
+const appendForm = (type, level) => {
+
+
+    routeColor.append(routeLabel).append(routeInput)
+    locations.append(locationLabel).append(locationInput)
+    setter.append(setterLabel).append(setterInput)
+}
 
 const boulderForm = () => {
     console.log('You want to make a Boulder climb')
