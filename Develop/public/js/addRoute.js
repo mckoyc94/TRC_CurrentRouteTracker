@@ -6,45 +6,62 @@ const leadArea = ["D", "E", "F", "G", "H", "I", "J", "K", "O", "P"]
 const boulderColors = ["blue", 'pink', 'green', 'yellow', 'orange', 'red']
 const holdColors = ['red', 'blue', 'green', 'yellow', 'pink', 'orange', 'purple', 'black', 'white', 'brown', 'so-ill green']
 // Form Rows
+const titleRow = $('<div>').addClass('form-row')
 const rowOne = $('<div>').addClass('form-row')
 const rowTwo = $('<div>').addClass('form-row')
+// Title
+const title = $('<h1>').addClass('form-group col-md-12 center')
+// Boulder Grade Input
+const tapeColor = $('<div>').addClass('form-group col-md-4')
+const tapeLabel = $('<label>').text("Tape Color")
+const tapeInput = $('<select>').addClass('form-control').attr('id', 'tape')
+// Top Rope Grade Input
+const grade = $('<div>').addClass('form-group col-md-4')
+const gradeLabel = $('<label>').text("Grade")
+const gradeInput = $('<select>').addClass('form-control').attr('id', 'grade')
 // Route Color Input
 const routeColor = $('<div>').addClass('form-group col-md-4')
-const routeLabel = $('<label>').val("Climb Color")
+const routeLabel = $('<label>').text("Climb Color")
 const routeInput = $('<select>').addClass('form-control').attr('id', 'holds')
 // Location Input
 const locations = $('<div>').addClass('form-group col-md-4')
-const locationLabel = $('<label>').val("Location")
+const locationLabel = $('<label>').text("Location")
 const locationInput = $('<select>').addClass('form-control').attr('id', 'location')
 // Setter Input
 const setter = $('<div>').addClass('form-group col-md-6')
-const setterLabel = $('<label>').val("Setter")
+const setterLabel = $('<label>').text("Setter")
 const setterInput = $('<select>').addClass('form-control').attr('id', 'setter')
 // Submit Button
-const submit = $('<button>').addClass('btn btn-primary').attr('id', 'submit')
+const submit = $('<button>').addClass('btn btn-primary').attr('id', 'submit').text('Submit')
 
 // Adds Form to Page
-const appendForm = (type, level) => {
+const appendForm = (type) => {
+    newForm.empty()
+    rowOne.empty()
+    if (type === 'boulder'){
+        title.text('Add a New Boulder Problem')
+        tapeColor.append(tapeLabel).append(tapeInput)
 
+        rowOne.append(tapeColor)
+    } else {
+        title.text('Add a New Top Rope or Lead Climb')
+        grade.append(gradeLabel).append(gradeInput)
 
+        rowOne.append(grade)
+    }
+    
     routeColor.append(routeLabel).append(routeInput)
     locations.append(locationLabel).append(locationInput)
     setter.append(setterLabel).append(setterInput)
+
+    titleRow.append(title)
+    rowOne.append(routeColor).append(locations)
+    rowTwo.append(setter)
+
+    newForm.append(titleRow).append(rowOne).append(rowTwo).append(submit) 
 }
 
-// Creates Form for Boulder Route
-const boulderForm = () => {
-    console.log('You want to make a Boulder climb')
-    const tapeColor = $('<div>').addClass('form-group col-md-4')
-    const tapeLabel = $('<label>').val("Tape Color")
-    const tapeInput = $('<select>').addClass('form-control').attr('id', 'tape')
-    
-}
+$('.dropdown-item').click(e => {
+    e.target.id === 'boulderClick' ? appendForm('boulder') : appendForm()
+})
 
-// Creates Form for Top Rope Route
-const leadForm = () => {
-    console.log('You want to make a Top Rope climb')
-    const grade = $('<div>').addClass('form-group col-md-4')
-    const tapeLabel = $('<label>').val("Grade")
-    const tapeInput = $('<select>').addClass('form-control').attr('id', 'grade')
-}
