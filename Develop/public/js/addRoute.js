@@ -1,10 +1,14 @@
 const newForm = $('.addClimb')
 // Locations
-const boulderArea = ["M-Wall", "Nook", "The Roof", "Outer Volcano", "OG 45", "Volcano", "Beast Roof", "New 45", "Small Slab", "Big Slab"]
-const leadArea = ["D", "E", "F", "G", "H", "I", "J", "K", "O", "P"]
+const boulderArea = ["...","M-Wall", "Nook", "The Roof", "Outer Volcano", "OG 45", "Volcano", "Beast Roof", "New 45", "Small Slab", "Big Slab"]
+const leadArea = ["...","D", "E", "F", "G", "H", "I", "J", "K", "O", "P"]
 // Colors
-const boulderColors = ["blue", 'pink', 'green', 'yellow', 'orange', 'red']
-const holdColors = ['red', 'blue', 'green', 'yellow', 'pink', 'orange', 'purple', 'black', 'white', 'brown', 'so-ill green']
+const boulderColors = ["...","blue", 'pink', 'green', 'yellow', 'orange', 'red']
+const holdColors = ["...",'red', 'blue', 'green', 'yellow', 'pink', 'orange', 'purple', 'black', 'white', 'brown', 'so-ill green']
+// Setters
+const setters = ["...",'CSP', 'CP', 'JFF', 'LK', 'XJT', 'ZAC']
+// Grades
+const topRopeGrade = ["...",'5.Fun', '7', '8', '9', '10a', '10b', '10c', '10d', '11a', '11b', '11c', '11d', '12a', '12b', '12c', '12d', '13a', '13b']
 // Form Rows
 const titleRow = $('<div>').addClass('form-row')
 const rowOne = $('<div>').addClass('form-row')
@@ -46,14 +50,49 @@ const appendForm = (type) => {
         title.text('Add a New Boulder Problem')
         tapeColor.append(tapeLabel).append(tapeInput)
 
+        boulderArea.map(area => {
+            let newOption = $('<option>').text(area)
+            locationInput.append(newOption)
+        })
+
+        boulderColors.map( tape => {
+            let newOption = $('<option>').text(tape)
+            tapeInput.append(newOption)
+        })
+
         rowOne.append(tapeColor)
     } else {
         title.text('Add a New Top Rope or Lead Climb')
         grade.append(gradeLabel).append(gradeInput)
 
+        leadArea.map(area => {
+            let newOption = $('<option>').text(area)
+            locationInput.append(newOption)
+        })
+
+        for(let i = 1; i < 59; i++){
+            let newOption = $('<option>').text(i)
+            locationInput.append(newOption)
+        }
+
+        topRopeGrade.map(tr => {
+            let newOption = $('<option>').text(tr)
+            gradeInput.append(newOption)
+        })
+
         rowOne.append(grade)
     }
     
+    setters.map( initial => {
+        let newOption = $('<option>').text(initial)
+        setterInput.append(newOption)
+    })
+
+    holdColors.map( hold => {
+        let newOption = $('<option>').text(hold)
+        routeInput.append(newOption)
+    })
+
     // Appends Labels and Inputs to Sections
     routeColor.append(routeLabel).append(routeInput)
     locations.append(locationLabel).append(locationInput)
