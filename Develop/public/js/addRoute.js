@@ -36,8 +36,12 @@ const submit = $('<button>').addClass('btn btn-primary').attr('id', 'submit').te
 
 // Adds Form to Page
 const appendForm = (type) => {
+    // Clears Form and Row 1
     newForm.empty()
     rowOne.empty()
+
+    // Determines if User wants to add a Boulder or TR route
+    // Updates Relevant Information based on type of climb being added
     if (type === 'boulder'){
         title.text('Add a New Boulder Problem')
         tapeColor.append(tapeLabel).append(tapeInput)
@@ -50,17 +54,21 @@ const appendForm = (type) => {
         rowOne.append(grade)
     }
     
+    // Appends Labels and Inputs to Sections
     routeColor.append(routeLabel).append(routeInput)
     locations.append(locationLabel).append(locationInput)
     setter.append(setterLabel).append(setterInput)
 
+    // Appends Sections to Rows
     titleRow.append(title)
     rowOne.append(routeColor).append(locations)
     rowTwo.append(setter)
 
+    // Appends all rows to Form Area
     newForm.append(titleRow).append(rowOne).append(rowTwo).append(submit) 
 }
 
+// Loads Designated Form based on Drop Down Menu
 $('.dropdown-item').click(e => {
     e.target.id === 'boulderClick' ? appendForm('boulder') : appendForm()
 })
