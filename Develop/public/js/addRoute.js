@@ -121,3 +121,7 @@ $('.dropdown-item').click(e => {
     e.target.id === 'boulderClick' ? appendForm('boulder') : appendForm()
 })
 
+newForm.on('click', submit, event => {
+    event.preventDefault()
+    console.log('Button Clicked')
+})
