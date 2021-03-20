@@ -3,8 +3,8 @@ const newForm = $('.addClimb')
 const boulderArea = ["...","M-Wall", "Nook", "The Roof", "Outer Volcano", "OG 45", "Volcano", "Beast Roof", "New 45", "Small Slab", "Big Slab"]
 const leadArea = ["...","D", "E", "F", "G", "H", "I", "J", "K", "O", "P"]
 // Colors
-const boulderColors = ["...","blue", 'pink', 'green', 'yellow', 'orange', 'red']
-const holdColors = ["...",'red', 'blue', 'green', 'yellow', 'pink', 'orange', 'purple', 'black', 'white', 'brown', 'so-ill green']
+const boulderColors = ["...","Blue", 'Pink', 'Green', 'Yellow', 'Orange', 'Red']
+const holdColors = ["...",'Red', 'Blue', 'Green', 'Yellow', 'Pink', 'Orange', 'Purple', 'Black', 'White', 'Brown', 'So-Ill Green']
 // Setters
 const setters = ["...",'CSP', 'CP', 'JFF', 'LK', 'XJT', 'ZAC']
 // Grades
@@ -18,7 +18,6 @@ const title = $('<h1>').addClass('form-group col-md-12 center')
 // Boulder Grade Input
 const tapeColor = $('<div>').addClass('form-group col-md-4')
 const tapeLabel = $('<label>').text("Tape Color")
-const tapeInput = $('<select>').addClass('form-control').attr('id', 'tape')
 // Top Rope Grade Input
 const grade = $('<div>').addClass('form-group col-md-4')
 const gradeLabel = $('<label>').text("Grade")
@@ -43,6 +42,10 @@ const appendForm = (type) => {
     // Clears Form and Row 1
     newForm.empty()
     rowOne.empty()
+    setterInput.empty()
+    gradeInput.empty()
+    locationInput.empty()
+    routeInput.empty()
 
     // Determines if User wants to add a Boulder or TR route
     // Updates Relevant Information based on type of climb being added
@@ -50,7 +53,7 @@ const appendForm = (type) => {
         // Updates Title
         title.text('Add a New Boulder Problem')
         // Creates Tape Color Section
-        tapeColor.append(tapeLabel).append(tapeInput)
+        tapeColor.append(tapeLabel).append(gradeInput)
 
         // Adds Boulder Locations to form
         boulderArea.map(area => {
@@ -61,7 +64,7 @@ const appendForm = (type) => {
         // Adds Boulder Tape Colors to form
         boulderColors.map( tape => {
             let newOption = $('<option>').text(tape)
-            tapeInput.append(newOption)
+            gradeInput.append(newOption)
         })
         // Appends Tape Color to form
         rowOne.append(tapeColor)
@@ -121,7 +124,21 @@ $('.dropdown-item').click(e => {
     e.target.id === 'boulderClick' ? appendForm('boulder') : appendForm()
 })
 
-newForm.on('click', submit, event => {
+newForm.on('click', 'button', event => {
     event.preventDefault()
-    console.log('Button Clicked')
+    if (event.target.id === 'submit'){
+        let newGrade = gradeInput.val()
+        let newSetter = setterInput.val()
+        let newColor = routeInput.val()
+        let newLocal = locationInput.val()
+    
+        console.log(`New Climb \n 
+            Grade: ${newGrade} \n
+            Color: ${newColor} \n
+            Location: ${newLocal} \n
+            Setter: ${newSetter}
+        `)
+
+        $("body").css({"background-color" : newGrade })
+    }
 })
