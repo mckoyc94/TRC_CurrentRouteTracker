@@ -8,4 +8,8 @@ module.exports = (app)=>{
     app.get("/addRoute", (req, res)=>{ 
         res.sendFile(path.join(__dirname, "../public/addRoute.html"))
     })
+
+    app.get("/currentRoutes", (req, res)=>{ 
+        res.sendFile(path.join(__dirname, "../public/statistics.html"))
+    })
 }
