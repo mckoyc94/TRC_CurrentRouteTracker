@@ -131,14 +131,27 @@ newForm.on('click', 'button', event => {
         let newSetter = setterInput.val()
         let newColor = routeInput.val()
         let newLocal = locationInput.val()
-    
-        console.log(`New Climb \n 
-            Grade: ${newGrade} \n
-            Color: ${newColor} \n
-            Location: ${newLocal} \n
-            Setter: ${newSetter}
-        `)
 
-        $("body").css({"background-color" : newGrade })
+        if (newGrade === "..." || newSetter === "..." || newColor === "..." || newLocal === "..."){
+            alert('Please fill out all areas')
+        } else {
+            let formType; 
+            console.log(`New Climb \n 
+                Grade: ${newGrade} \n
+                Color: ${newColor} \n
+                Location: ${newLocal} \n
+                Setter: ${newSetter}
+            `)
+    
+            boulderColors.map(color => {
+                if(newGrade === color){
+                    formType = 'boulder'
+                }
+            })
+ 
+            formType === 'boulder'? appendForm('boulder') : appendForm()
+
+        }
+    
     }
 })
