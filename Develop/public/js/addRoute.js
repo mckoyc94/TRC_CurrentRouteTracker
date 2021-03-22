@@ -124,31 +124,42 @@ $('.dropdown-item').click(e => {
     e.target.id === 'boulderClick' ? appendForm('boulder') : appendForm()
 })
 
+// Adds Climbs to Database when Submit Button is Clicked
 newForm.on('click', 'button', event => {
+    // Prevents Page Reload
     event.preventDefault()
+    // Only Adds Climb once Submit is Clicked
     if (event.target.id === 'submit'){
+        // Grabs the Values of Form
         let newGrade = gradeInput.val()
         let newSetter = setterInput.val()
         let newColor = routeInput.val()
         let newLocal = locationInput.val()
 
+        // Won't add climb if any input is not filled
         if (newGrade === "..." || newSetter === "..." || newColor === "..." || newLocal === "..."){
             alert('Please fill out all areas')
+        // Adds Climb to DB
         } else {
-            let formType; 
+            // Allows Function to know which form to reload
+            let formType;
+            
+            // Takes in Info and Adds it to DB
             console.log(`New Climb \n 
                 Grade: ${newGrade} \n
                 Color: ${newColor} \n
                 Location: ${newLocal} \n
                 Setter: ${newSetter}
             `)
-    
+            
+            // Checks if a Boulder 
             boulderColors.map(color => {
                 if(newGrade === color){
                     formType = 'boulder'
                 }
             })
- 
+            
+            // Reloads Form based on what type of climb is trying to be added
             formType === 'boulder'? appendForm('boulder') : appendForm()
 
         }
