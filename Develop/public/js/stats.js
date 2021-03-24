@@ -36,6 +36,10 @@ let hasChanged;
 
 const updatePage = () => {
     console.log("Going to Update Page")
+    $("#climbList").removeClass("hide")
+    $("#date").removeClass("hide")
+    $("#totalClimbs").removeClass("hide")
+
 }
 
 const updateForm = climb => {
@@ -106,6 +110,7 @@ const updateForm = climb => {
     rowTwo.append(routeColor).append(locations).append(setter)
 
     $("#rowOne").append(rowTwo)
+    updatePage()
 }
 
 filter.on("click", 'button', event => {

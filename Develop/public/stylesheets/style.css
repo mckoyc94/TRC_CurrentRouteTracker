@@ -3,6 +3,17 @@
     padding: 3%;
 }
 
+.listButton{
+    display: inline;
+    float: right;
+    font-size: small;
+    width: 25%;
+}
+
+.hide{
+    visibility: hidden;
+}
+
 .center{
     text-align: center;
 }
@@ -57,11 +68,4 @@
 #filter{
     background-color: lightgray;
     padding: 3%;
-}
-
-.listButton{
-    display: inline;
-    float: right;
-    font-size: small;
-    width: 25%;
 }
