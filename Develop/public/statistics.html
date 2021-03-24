@@ -32,17 +32,68 @@
   </nav>
 
   <!-- Statistics -->
-  <main class="container mt-3">
+  <main class="container mt-5">
       <div class="row">
-        <div class="column-lg-4" id="climbList">  
-             <!-- List of Climbs -->
+        <div class="col-lg-4">  
+            <!-- List of Climbs -->
+            <ul class="list-group" id="climbList">
+                <li class="list-group-item" id="listTitle">
+                    <Strong>Current Routes in Gym</Strong>
+                </li>
+                <li class="list-group-item">
+                    <strong>Location:</strong> 45 Wall <strong>Climb Color: </strong> <div id ="green"></div>
+                    <br>
+                    <strong>Grade:</strong> Blue Tape
+                    </br>
+                    <strong>Setter:</strong> JJF
+                    <button class="listButton">Edit</button>
+                    </br>
+                </li>
+                <li class="list-group-item">
+                    <strong>Location:</strong> 45 Wall <strong>Climb Color: </strong> <div id ="blue"></div>
+                    <br>
+                    <strong>Grade:</strong> Pink tape
+                    </br>
+                    <strong>Setter:</strong> JJF
+                    <button class="listButton">Edit</button>
+                    </br>
+                </li>
+                <li class="list-group-item">
+                    <strong>Location:</strong> 45 Wall <strong>Climb Color: </strong> <div id ="purple"></div>
+                    <br>
+                    <strong>Grade:</strong> Green tape
+                    </br>
+                    <strong>Setter:</strong> ZAC
+                    <button class="listButton">Edit</button>
+                    </br>
+                </li><li class="list-group-item">
+                    <strong>Location:</strong> 45 Wall <strong>Climb Color: </strong> <div id ="red"></div>
+                    <br>
+                    <strong>Grade:</strong> Yellow tape
+                    </br>
+                    <strong>Setter:</strong> XJT
+                    <button class="listButton">Edit</button>
+                    </br>
+                </li>
+            </ul>
         </div>
-        <div class="column-lg-8">
+        <div class="col-lg-8">
             <div class="row">
                 <!-- Info Filter Form -->
+                <form class="col-lg-12 mb-2" id="filter">
+                    
+                    <button type="submit" class="btn btn-danger">Veiw Routes</button>
+                </form>
+
             </div>
             <div class="row">
                 <!-- Today's Date -->
+                <div class="card col-lg-4">
+                    <div class="card-body">
+                      <h5 class="card-title">Today's Date</h5>
+                      <h6 class="card-subtitle mb-2 text-muted">Monday, March 29th 2021</h6>
+                    </div>
+                </div>
                 <!-- Card -->
                     <!-- # of Climbs in Specified Range -->
                     <!-- Average Age of Climbs in Specified Range -->
@@ -59,5 +110,13 @@
         </div>
       </div>
   </main>
+
+  <!-- Bootstrap & JQuery Links -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<!-- Link to Canvas.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<!-- Internal Javascript -->
+<script type="text/javascript" src="js/stats.js"></script>
 </body>
 </html>

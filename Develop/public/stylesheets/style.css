@@ -1,4 +1,4 @@
-form{
+.addClimb{
     background-color: rgba(243, 234, 222, 0.829);
     padding: 3%;
 }
@@ -11,8 +11,57 @@ form{
     vertical-align: bottom;
 }
 
+.btn-danger{
+    float: right;
+}
+
 #logo{
     width: 350px;
     height: 150px;
     /* margin-left: 33%; */
+}
+
+#green{
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    display: inline-block;
+}
+
+#red{
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    display: inline-block;
+}
+
+#blue{
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    display: inline-block;
+}
+
+#purple{
+    width: 10px;
+    height: 10px;
+    background-color: purple;
+    display: inline-block;
+}
+
+#listTitle{
+    background-color: grey;
+    color:honeydew
+}
+
+#filter{
+    background-color: lightgray;
+    padding: 3%;
+}
+
+.listButton{
+    display: inline;
+    float: right;
+    font-size: small;
+    width: 25%;
 }
