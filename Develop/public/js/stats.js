@@ -31,12 +31,21 @@ const locationInput = $('<select>').addClass('form-control').attr('id', 'locatio
 const setter = $('<div>').addClass('form-group col-md-3')
 const setterLabel = $('<label>').text("Setter")
 const setterInput = $('<select>').addClass('form-control').attr('id', 'setter')
+// Operator for Submit Button
+let hasChanged;
 
 const updatePage = () => {
-
+    console.log("Going to Update Page")
 }
 
 const updateForm = climb => {
+    hasChanged = false;
+    rowTwo.remove()
+    rowTwo.empty()
+    setterInput.empty()
+    gradeInput.empty()
+    locationInput.empty()
+    routeInput.empty()
     if (climb === 'boulder'){
          // Creates Tape Color Section
          tapeColor.append(tapeLabel).append(gradeInput)
@@ -100,10 +109,22 @@ const updateForm = climb => {
 }
 
 filter.on("click", 'button', event => {
-    let type = $('#inputType').val()
+    let type = $('#inputType').val();
     
     event.preventDefault();
-    type === "Boulder" ? updateForm('boulder') : type === "Top Rope/Lead" ? updateForm() : console.log("Choose a Climb")
-    
+
+    if(hasChanged){
+        type === "Boulder" ? updateForm('boulder') : type === "Top Rope/Lead" ? updateForm() : console.log("Choose a Climb")   
+    } else {
+        updatePage()
+    }
+
 })
 
+filter.on("change", "select", event => {
+    event.preventDefault()
+    if (event.target.id === 'inputType'){
+        console.log("something changed")
+        hasChanged = true;
+    }
+})
