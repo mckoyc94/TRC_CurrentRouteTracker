@@ -81,8 +81,17 @@
             <div class="row">
                 <!-- Info Filter Form -->
                 <form class="col-lg-12 mb-2" id="filter">
-                    
-                    <button type="submit" class="btn btn-danger">Veiw Routes</button>
+                    <div class = "form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputType">Type of Climb</label>
+                            <select id="inputType" class="form-control">
+                              <option selected> </option>
+                              <option>Top Rope/Lead</option>
+                              <option>Boulder</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-danger" id="filterBtn">Veiw Routes</button>
                 </form>
 
             </div>
@@ -95,9 +104,16 @@
                     </div>
                 </div>
                 <!-- Card -->
-                    <!-- # of Climbs in Specified Range -->
-                    <!-- Average Age of Climbs in Specified Range -->
-                    <!-- Median Age of Climbs in Specified Range -->
+                <div class="card col-lg-4">
+                    <div class="card-body">
+                        <!-- # of Climbs in Specified Range -->
+                        <Strong>Total Climbs:</Strong> 4
+                        <!-- Average Age of Climbs in Specified Range -->
+                        <br><strong>Average Age of Climbs:</strong> 12 days
+                        <!-- Median Age of Climbs in Specified Range -->
+                        <br><strong>Median Age of Climbs:</strong> 6.5 days
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <!-- Target # of Climbs by Grade -->
