@@ -2,10 +2,10 @@
 const date = $('.card-subtitle')
 const ctx = document.getElementById('myChart').getContext('2d');
 
-//
+// Current Date
 const day = moment().format('MMMM Do YYYY')
 date.text(day)
-console.log(day)
+
 
 // Chart Data
 const chart = new Chart(ctx, {
