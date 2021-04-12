@@ -18,6 +18,10 @@ const setterSchema = new Schema({
     top_rope: [{
         type: Schema.Types.ObjectId,
         ref: "Top Rope"
+    }],
+    active: [{
+        type: Boolean,
+        default: true
     }]
 })
 
