@@ -12,6 +12,7 @@ app.use(express.static("public"));
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/routes");
 
 require("./routes/html-routes")(app)
+require("./routes/api-routes")(app)
 
 app.listen(PORT, ()=> {
     console.log("Listening on PORT %", PORT)

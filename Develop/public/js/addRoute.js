@@ -145,12 +145,8 @@ newForm.on('click', 'button', event => {
             let formType;
             
             // Takes in Info and Adds it to DB
-            console.log(`New Climb \n 
-                Grade: ${newGrade} \n
-                Color: ${newColor} \n
-                Location: ${newLocal} \n
-                Setter: ${newSetter}
-            `)
+            // $.post('/api/topRope')
+            console.log(`Grade: ${newGrade} \nSetter: ${newSetter} \nColor: ${newColor} \nArea: ${newLocal}`)
             
             // Checks if a Boulder 
             boulderColors.map(color => {
