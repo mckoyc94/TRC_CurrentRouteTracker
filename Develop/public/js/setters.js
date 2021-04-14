@@ -57,11 +57,45 @@ const setters = [{
 }]
 
 const setterList = $('#setList')
+const inactiveList = $('#inputSetter')
 
 const loadSetters = () => {
     const currentSet = setters.filter(set => set.active === true)
+    const inactiveSet = setters.filter(set => set.active === false)
+    const title = $("<li>").addClass("list-group-item").attr("id", "listTitle")
+    const titleText = $("<strong>").text("Current Setters")
+    const defaultOpt = $("<option>").text(" ")
 
-    console.log(currentSet)
+    setterList.empty()
+    title.append(titleText)
+    setterList.append(title)
+
+    inactiveList.empty()
+    inactiveList.append(defaultOpt)
+
+    currentSet.map(setter => {
+        let name = setter.name;
+        let init = setter.initials;
+        let boulder = setter.boulders;
+        let tR = setter.top_rope;
+        let newList = `
+            <li class="list-group-item">
+                <strong>Name:</strong> ${name}
+            </li>
+        `
+
+        setterList.append(newList)
+    })
+
+    inactiveSet.map(setter => {
+        let name = setter.name
+        let newOpt = `
+            <option>${name}</option>
+        `
+
+        inactiveList.append(newOpt)
+    })
+    
 }
 
 loadSetters()
