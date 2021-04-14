@@ -69,3 +69,12 @@
     background-color: lightgray;
     padding: 3%;
 }
+
+#newSetter{
+    background-color: #f55d5d;
+}
+
+#oldSetter {
+    background-color: #474343;
+    color:whitesmoke
+}

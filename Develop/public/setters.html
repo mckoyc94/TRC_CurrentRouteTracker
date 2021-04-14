@@ -43,11 +43,40 @@
         </div>
         <div class="col-lg-7">
             <div class="row">
-                <form class="col-md-5">
+                <form class="col-md-6" id="oldSetter">
+                  <div class="form-row">
+                    <h2>Reactivate a Setter</h2>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="inputSetter">Choose an inactive Setter</label>
+                      <select class="form-control" id="inputSetter">
+                        <option> </option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <button>Reactivate</button>
+                  </div>
                     
                 </form>
-                <form class="col-md-7">
-
+                <form class="col-md-6" id="newSetter">
+                  <div class="form-row">
+                    <h2>Add a New Setter</h2>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="inputName">Name</label>
+                      <input type="text" class="form-control" id="inputName" placeholder="Jordan Pacheco">
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="inputInitial">Initials</label>
+                      <input type="text" class="form-control" id='inputInitial' placeholder="JEP">
+                    </div>
+                    <button>Add Setter</button>
+                  </div>
                 </form>
             </div>
         </div>
