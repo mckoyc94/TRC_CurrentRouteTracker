@@ -32,8 +32,10 @@
     </div>
   </nav>
 
+  <!-- Displays Current Setters and Allows for Manager to add new Setters -->
   <main class="container mt-5">
     <div class="row">
+        <!-- List of Setters -->
         <div class="col-lg-5">
             <ul class="list-group" id="setList">
                 <li class="list-group-item" id="listTitle">
@@ -41,14 +43,17 @@
                 </li>
             </ul>
         </div>
+        <!-- Forms to Add New Setters -->
         <div class="col-lg-7">
             <div class="row">
+                <!-- Form to Reinstate Setter -->
                 <form class="col-md-6" id="oldSetter">
                   <div class="form-row">
                     <h2>Reactivate a Setter</h2>
                   </div>
                   <div class="form-row">
                     <div class="form-group">
+                      <!-- Lists the Inactive Setters -->
                       <label for="inputSetter">Choose an inactive Setter</label>
                       <select class="form-control" id="inputSetter">
                         <option> </option>
@@ -56,25 +61,29 @@
                     </div>
                   </div>
                   <div class="form-row">
+                    <!-- Activate Button -->
                     <button type="submit" class="btn btn-danger" id="reactive">Reactivate</button>
-                  </div>
-                    
+                  </div>  
                 </form>
+                <!-- Form to Add New Setter -->
                 <form class="col-md-6" id="newSetter">
                   <div class="form-row">
                     <h2>Add a New Setter</h2>
                   </div>
                   <div class="form-row">
+                    <!-- Input Name -->
                     <div class="form-group col-md-8">
                       <label for="inputName">Name</label>
                       <input type="text" class="form-control" id="inputName" placeholder="Jordan Pacheco">
                     </div>
+                    <!-- Input Initials -->
                     <div class="form-group col-md-4">
                       <label for="inputInitial">Initials</label>
                       <input type="text" class="form-control" id='inputInitial' placeholder="JEP">
                     </div>
                   </div>
                   <div class="form-row">
+                    <!-- Add Button -->
                     <div class="form-group col-md-8" id="addButton">
                       <button type="submit" class="btn btn-secondary" id="addSet">Add Setter</button>
                     </div>
