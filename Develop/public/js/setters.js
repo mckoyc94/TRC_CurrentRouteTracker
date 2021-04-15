@@ -80,7 +80,12 @@ const loadSetters = () => {
         let tR = setter.top_rope;
         let newList = `
             <li class="list-group-item">
-                <strong>Name:</strong> ${name}
+                <strong>Name: </strong> ${name}   <strong>Initials: </strong> ${init}
+                <br>
+                <strong># of Boulders: </strong> ${boulder}
+                <br>
+                <strong># of Top Rope Climbs: </strong> ${tR}
+                <button class="listButton" id="${init}"> Deactivate </button> 
             </li>
         `
 
@@ -89,13 +94,10 @@ const loadSetters = () => {
 
     inactiveSet.map(setter => {
         let name = setter.name
-        let newOpt = `
-            <option>${name}</option>
-        `
+        let newOpt = `<option>${name}</option>`
 
         inactiveList.append(newOpt)
-    })
-    
+    })    
 }
 
 loadSetters()
