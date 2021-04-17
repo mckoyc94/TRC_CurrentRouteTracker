@@ -33,7 +33,7 @@ const locationInput = $('<select>').addClass('form-control').attr('id', 'locatio
 // Setter Input
 const setter = $('<div>').addClass('form-group col-md-6')
 const setterLabel = $('<label>').text("Setter")
-const setterInput = $('<select>').addClass('form-control').attr('id', 'setter')
+const setterInput = $('<select>').addClass('form-control').attr('id', 'setter').attr("name", 'setter')
 // Submit Button
 const submit = $('<button>').addClass('btn btn-primary').attr('id', 'submit').text('Submit')
 
@@ -145,7 +145,7 @@ newForm.on('click', 'button', event => {
             let formType;
             
             // Takes in Info and Adds it to DB
-            // $.post('/api/topRope')
+            $.post('/api/topRope')
             console.log(`Grade: ${newGrade} \nSetter: ${newSetter} \nColor: ${newColor} \nArea: ${newLocal}`)
             
             // Checks if a Boulder 

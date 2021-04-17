@@ -28,6 +28,9 @@ module.exports = (app) => {
         .then(dbTR => {
             res.json(dbTR)
         })
+        .catch(err => {
+            res.json(err);
+          });
     })
 
     app.get('/api/setters', (req, res) => {

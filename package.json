@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/mckoyc94/TRC_CurrentRouteTracker#readme",
   "dependencies": {
+    "mongod": "^2.0.0",
     "nodemon": "^2.0.7"
   }
 }

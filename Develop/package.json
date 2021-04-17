@@ -1,0 +1,35 @@
+{
+  "name": "trc_crt",
+  "version": "1.0.0",
+  "description": "An app to track routes",
+  "main": "server.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "moment": "^2.29.1",
+    "mongod": "^2.0.0",
+    "mongojs": "^3.1.0",
+    "mongoose": "^5.12.4",
+    "node": "^15.12.0",
+    "nodemon": "^2.0.7",
+    "path": "^0.12.7",
+    "require": "^2.4.20",
+    "requirejs": "^2.3.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mckoyc94/TRC_CurrentRouteTracker.git"
+  },
+  "author": "Conor McKoy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mckoyc94/TRC_CurrentRouteTracker/issues"
+  },
+  "homepage": "https://github.com/mckoyc94/TRC_CurrentRouteTracker#readme"
+}
