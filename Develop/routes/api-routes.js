@@ -11,9 +11,13 @@ module.exports = (app) => {
 
     app.post('/api/boulders', ({body}, res) => {
         Boulder.create(body)
+        .then(({_id, setter}) => Setter.findOneAndUpdate({initials: setter}, {$push: {boulders: _id} }, {new: true}))
         .then(dbBoulder => {
             res.json(dbBoulder)
         })
+        .catch(err => {
+            res.json(err);
+          });
     })
 
     app.get('/api/topRope', (req, res) => {
@@ -25,6 +29,7 @@ module.exports = (app) => {
 
     app.post('/api/topRope', ({body}, res) => {
         TopRope.create(body)
+        .then(({_id, setter}) => Setter.findOneAndUpdate({initials: setter}, {$push: {top_rope: _id} }, {new: true}))
         .then(dbTR => {
             res.json(dbTR)
         })

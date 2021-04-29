@@ -16,7 +16,7 @@ const boulderSchema = new Schema({
         required: "Please choose a tape color"
     },
     setter: {
-        type: Schema.Types.ObjectId,
+        type: String,
         ref: "Setters",
         required: "Please choose a Setter"
     },

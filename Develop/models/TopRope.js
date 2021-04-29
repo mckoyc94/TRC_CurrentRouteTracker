@@ -13,7 +13,6 @@ const topRopeSchema = new Schema({
     },
     setter: {
         type: String,
-        ref: "Setters",
         required: "Please choose a Setter"
     },
     climbColor : {
