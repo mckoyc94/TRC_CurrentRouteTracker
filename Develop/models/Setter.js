@@ -19,10 +19,10 @@ const setterSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Top Rope"
     }],
-    active: [{
+    active: {
         type: Boolean,
         default: true
-    }]
+    }
 })
 
 const Setter = mongoose.model("Setters", setterSchema)

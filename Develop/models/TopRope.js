@@ -11,11 +11,11 @@ const topRopeSchema = new Schema({
         type: String,
         required: "Please Choose a Tape color"
     },
-    // setter: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: "Setters",
-    //     required: "Please choose a Setter"
-    // },
+    setter: {
+        type: String,
+        ref: "Setters",
+        required: "Please choose a Setter"
+    },
     climbColor : {
         type: String,
         required: "Please designate the climb color"
