@@ -25,17 +25,19 @@ const gradeInput = $('<select>').addClass('form-control').attr('id', 'grade')
 // Route Color Input
 const routeColor = $('<div>').addClass('form-group col-md-4')
 const routeLabel = $('<label>').text("Climb Color")
-const routeInput = $('<select>').addClass('form-control').attr('id', 'holds')
+const routeInput = $('<select>').addClass('form-control').attr('id', 'holds').attr("name", 'climbColor')
 // Location Input
 const locations = $('<div>').addClass('form-group col-md-4')
 const locationLabel = $('<label>').text("Location")
-const locationInput = $('<select>').addClass('form-control').attr('id', 'location')
+const locationInput = $('<select>').addClass('form-control').attr('id', 'location').attr("name", 'location')
 // Setter Input
 const setter = $('<div>').addClass('form-group col-md-6')
 const setterLabel = $('<label>').text("Setter")
 const setterInput = $('<select>').addClass('form-control').attr('id', 'setter').attr("name", 'setter')
 // Submit Button
 const submit = $('<button>').addClass('btn btn-primary').attr('id', 'submit').text('Submit')
+// Type of Climb Being Added
+let formType = "";
 
 // Adds Form to Page
 const appendForm = (type) => {
@@ -50,9 +52,12 @@ const appendForm = (type) => {
     // Determines if User wants to add a Boulder or TR route
     // Updates Relevant Information based on type of climb being added
     if (type === 'boulder'){
+        // Updates form type 
+        formType = 'boulder'
         // Updates Title
         title.text('Add a New Boulder Problem')
         // Creates Tape Color Section
+        gradeInput.attr("name", 'tapeColor')
         tapeColor.append(tapeLabel).append(gradeInput)
 
         // Adds Boulder Locations to form
@@ -69,9 +74,12 @@ const appendForm = (type) => {
         // Appends Tape Color to form
         rowOne.append(tapeColor)
     } else {
+        // Updates Form Type
+        formType = "top rope"
         // Updates Title
         title.text('Add a New Top Rope or Lead Climb')
         // Appends Grade Section
+        gradeInput.attr("name", 'grade')
         grade.append(gradeLabel).append(gradeInput)
 
         // Adds Top Rope and Lead Walls to form
@@ -142,18 +150,30 @@ newForm.on('click', 'button', event => {
         // Adds Climb to DB
         } else {
             // Allows Function to know which form to reload
-            let formType;
+            let newClimb;
+            if (formType === 'boulder'){
+                newClimb = {
+                    setter: newSetter,
+                    grade: newGrade,
+                    climbColor: newColor,
+                    location: newLocal
+                }
+            } else {
+                newClimb = {
+                    setter: newSetter,
+                    tapeColor: newGrade,
+                    climbColor: newColor,
+                    location: newLocal
+                }
+            }
             
             // Takes in Info and Adds it to DB
-            $.post('/api/topRope')
+            if (formType === "boulder"){
+                $.post('/api/boulders', newClimb)
+            } else {
+                $.post('/api/topRope', newClimb)
+            }
             console.log(`Grade: ${newGrade} \nSetter: ${newSetter} \nColor: ${newColor} \nArea: ${newLocal}`)
-            
-            // Checks if a Boulder 
-            boulderColors.map(color => {
-                if(newGrade === color){
-                    formType = 'boulder'
-                }
-            })
             
             // Reloads Form based on what type of climb is trying to be added
             formType === 'boulder'? appendForm('boulder') : appendForm()

@@ -19,7 +19,7 @@ const topRopeSchema = new Schema({
         type: String,
         required: "Please designate the climb color"
     }, 
-    wall: {
+    location: {
         type: String,
         required: "Please designate where the climb was set"
     },
