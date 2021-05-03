@@ -1,63 +1,14 @@
-const setters = [{
-    "name": "Jenny Fryer",
-    "initials": "JJF",
-    "boulders": 56,
-    "top_rope" : 103,
-    "active": true
-},
-{
-    "name": "Xavier Torriente",
-    "initials": "XJT",
-    "boulders": 76,
-    "top_rope" : 96,
-    "active": true
-},
-{
-    "name": "Chris Perez",
-    "initials": "CP",
-    "boulders": 45,
-    "top_rope" : 63,
-    "active": true
-},{
-    "name": "Chris St. Pierre",
-    "initials": "CSP",
-    "boulders": 80,
-    "top_rope" : 26,
-    "active": true
-},{
-    "name": "Zac Belida",
-    "initials": "ZAC",
-    "boulders": 15,
-    "top_rope" : 94,
-    "active": true
-},{
-    "name": "Lee Kraut",
-    "initials": "LK",
-    "boulders": 12,
-    "top_rope" : 20,
-    "active": true
-},{
-    "name": "Ashley Hopfenblatt",
-    "initials": "AH",
-    "boulders": "0",
-    "top_rope" : 32,
-    "active": false
-},{
-    "name": "Bryce Shannon",
-    "initials": "BAS",
-    "boulders": 11,
-    "top_rope" : 26,
-    "active": false
-},{
-    "name": "David Garabone",
-    "initials": "DG",
-    "boulders": 35,
-    "top_rope" : 10,
-    "active": false
-}]
+let setters = [];
 
 const setterList = $('#setList')
 const inactiveList = $('#inputSetter')
+
+const getSetters = () => {
+    $.get('api/setters').then(data => {
+        setters = [...data]
+        loadSetters()
+    })
+}
 
 const loadSetters = () => {
     const currentSet = setters.filter(set => set.active === true)
@@ -74,6 +25,7 @@ const loadSetters = () => {
     inactiveList.append(defaultOpt)
 
     currentSet.map(setter => {
+        console.log(setter)
         let name = setter.name;
         let init = setter.initials;
         let boulder = setter.boulders;
@@ -82,9 +34,9 @@ const loadSetters = () => {
             <li class="list-group-item">
                 <strong>Name: </strong> ${name}   <strong>Initials: </strong> ${init}
                 <br>
-                <strong># of Boulders: </strong> ${boulder}
+                <strong># of Boulders: </strong> ${boulder.length}
                 <br>
-                <strong># of Top Rope Climbs: </strong> ${tR}
+                <strong># of Top Rope Climbs: </strong> ${tR.length}
                 <button class="listButton" id="${init}"> Deactivate </button> 
             </li>
         `
@@ -100,5 +52,5 @@ const loadSetters = () => {
     })    
 }
 
-loadSetters()
+getSetters()
 
