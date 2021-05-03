@@ -65,5 +65,21 @@ const loadSetters = () => {
     })    
 }
 
+const changeActive = active => {
+    console.log("Button Clicked \nStatus being changed to:", active)
+}
+
+$("#reactive").on("click", e => {
+    e.preventDefault()
+    changeActive("activate")
+})
+
+setterList.on("click", "button", e => {
+    e.preventDefault()
+    changeActive("deactivate")
+
+})
+
+
 getSetters()
 
