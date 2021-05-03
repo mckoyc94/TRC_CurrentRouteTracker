@@ -6,7 +6,7 @@ const leadArea = ["...","D", "E", "F", "G", "H", "I", "J", "K", "O", "P"]
 const boulderColors = ["...","Blue", 'Pink', 'Green', 'Yellow', 'Orange', 'Red']
 const holdColors = ["...",'Red', 'Blue', 'Green', 'Yellow', 'Pink', 'Orange', 'Purple', 'Black', 'White', 'Brown', 'So-Ill Green']
 // Setters
-const setters = ["...",'CSP', 'CP', 'JFF', 'LK', 'XJT', 'ZAC']
+let setters = ["..."]
 // Grades
 const topRopeGrade = ["...",'5.Fun', '7', '8', '9', '10a', '10b', '10c', '10d', '11a', '11b', '11c', '11d', '12a', '12b', '12c', '12d', '13a', '13b']
 // Form Rows
@@ -38,6 +38,15 @@ const setterInput = $('<select>').addClass('form-control').attr('id', 'setter').
 const submit = $('<button>').addClass('btn btn-primary').attr('id', 'submit').text('Submit')
 // Type of Climb Being Added
 let formType = "";
+
+// Adds Setters Initials to be used
+const getSetters = () => {
+    $.get('api/setters/active').then(data => {
+        data.map(setter => {
+            setters.push(setter.initials)
+        })
+    })
+}
 
 // Adds Form to Page
 const appendForm = (type) => {
@@ -154,14 +163,14 @@ newForm.on('click', 'button', event => {
             if (formType === 'boulder'){
                 newClimb = {
                     setter: newSetter,
-                    grade: newGrade,
+                    tapeColor: newGrade,
                     climbColor: newColor,
                     location: newLocal
                 }
             } else {
                 newClimb = {
                     setter: newSetter,
-                    tapeColor: newGrade,
+                    grade: newGrade,
                     climbColor: newColor,
                     location: newLocal
                 }
@@ -182,3 +191,6 @@ newForm.on('click', 'button', event => {
     
     }
 })
+
+// Loads Setters when Page Loads
+getSetters()

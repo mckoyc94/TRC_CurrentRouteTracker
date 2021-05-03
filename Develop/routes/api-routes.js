@@ -45,6 +45,13 @@ module.exports = (app) => {
         })
     })
 
+    app.get('/api/setters/active', (req, res) => {
+        Setter.find({active: true})
+        .then(dbSetter => {
+            res.json(dbSetter)
+        })
+    })
+
     app.post('/api/setters', ({body}, res) => {
         Setter.create(body)
         .then(dbSetter => {
