@@ -58,7 +58,8 @@ const loadSetters = () => {
     inactiveSet.map(setter => {
         // Sets Option List Item
         let name = setter.name
-        let newOpt = `<option>${name}</option>`
+        let id = setter.id
+        let newOpt = `<option id="${id}">${name}</option>`
 
         // Appends Item to Inactive Dropdown
         inactiveList.append(newOpt)
@@ -66,7 +67,18 @@ const loadSetters = () => {
 }
 
 const changeActive = active => {
-    console.log("Button Clicked \nStatus being changed to:", active)
+    if (active === 'activate'){
+        const oldSetter = { 
+            name: $('#inputSetter').val(),
+            active: true
+        }
+        $.post('/api/setters/update', oldSetter)
+        .then(alert(`${oldSetter.name} reactivated`))
+        .then(getSetters())
+            
+    } else if (active === 'deactivate'){
+
+    }
 }
 
 $("#reactive").on("click", e => {
@@ -77,7 +89,6 @@ $("#reactive").on("click", e => {
 setterList.on("click", "button", e => {
     e.preventDefault()
     changeActive("deactivate")
-
 })
 
 

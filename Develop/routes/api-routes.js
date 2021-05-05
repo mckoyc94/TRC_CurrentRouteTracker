@@ -52,11 +52,11 @@ module.exports = (app) => {
         })
     })
 
-    app.post('/api/setters/update/:initials', (req, res) => {
+    app.post('/api/setters/update', ({body}, res) => {
         Setter.updateOne({
-            initials: req.params.initials
+            name: body.name
         },{
-            $set: {active: req.body.active}
+            $set: {active: body.active}
         })
         .then(dbSetter => res.json(dbSetter))
         .catch(err => res.json(err))
