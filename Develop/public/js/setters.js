@@ -47,7 +47,7 @@ const loadSetters = () => {
                 <strong># of Boulders: </strong> ${boulder.length}
                 <br>
                 <strong># of Top Rope Climbs: </strong> ${tR.length}
-                <button class="listButton" id="${init}"> Deactivate </button> 
+                <button class="listButton" id="${name}"> Deactivate </button> 
             </li>
         `
         // Appends item to List
@@ -66,10 +66,10 @@ const loadSetters = () => {
     })    
 }
 
-const changeActive = active => {
+const changeActive = (active, setter) => {
     if (active === 'activate'){
         const oldSetter = { 
-            name: $('#inputSetter').val(),
+            name: setter,
             active: true
         }
         $.post('/api/setters/update', oldSetter)
@@ -77,18 +77,26 @@ const changeActive = active => {
         .then(getSetters())
             
     } else if (active === 'deactivate'){
-
+        const oldSetter = { 
+            name: setter,
+            active: false
+        }
+        $.post('/api/setters/update', oldSetter)
+        .then(alert(`${oldSetter.name} deactivated`))
+        .then(getSetters())
     }
 }
 
 $("#reactive").on("click", e => {
     e.preventDefault()
-    changeActive("activate")
+    const setName = $('#inputSetter').val()
+    changeActive("activate", setName)
 })
 
 setterList.on("click", "button", e => {
     e.preventDefault()
-    changeActive("deactivate")
+    const setName = e.target.id 
+    changeActive("deactivate", setName)
 })
 
 
