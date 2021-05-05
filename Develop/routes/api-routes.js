@@ -52,6 +52,16 @@ module.exports = (app) => {
         })
     })
 
+    app.post('/api/setters/update/:initials', (req, res) => {
+        Setter.updateOne({
+            initials: req.params.initials
+        },{
+            $set: {active: req.body.active}
+        })
+        .then(dbSetter => res.json(dbSetter))
+        .catch(err => res.json(err))
+    })
+
     app.post('/api/setters', ({body}, res) => {
         Setter.create(body)
         .then(dbSetter => {
