@@ -99,6 +99,47 @@ setterList.on("click", "button", e => {
     changeActive("deactivate", setName)
 })
 
+$("#addSet").on('click', e => {
+    e.preventDefault()
+    const input = $('#inputName').val().split(" ")
+    let newName = ""
+
+    input.forEach(word => {
+        word = word.charAt(0).toUpperCase() + word.slice(1)
+        newName = newName + word + " "
+    })
+
+    const newSetter = {
+        name: newName.trim(),
+        initials: $('#inputInitial').val().toUpperCase()
+    }
+
+    const {name, initials} = newSetter
+
+    if(name === '' || initials === ''){
+        alert("Please Add a Name and Initials")
+    } else {
+        $.get('/api/setters').then(data => {
+            const settersDB = [...data]
+            let oldSet;
+            let oldSetInit;
+            oldSet = settersDB.filter(setter => setter.name.toUpperCase() === name.toUpperCase())
+            oldSetInit = settersDB.filter(setter => setter.initials === initials)
+
+            console.log(oldSet, oldSetInit)
+
+            if(oldSetInit.length != 0){
+                alert("A Setter Already has these initials")
+            } else if (oldSet.length != 0){
+                alert("There is Already a Setter with this name")
+            } else {
+                console.log("Added a New setter")
+            }
+            
+        })
+    }
+})
+
 
 getSetters()
 
