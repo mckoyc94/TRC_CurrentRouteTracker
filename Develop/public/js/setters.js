@@ -133,7 +133,11 @@ $("#addSet").on('click', e => {
             } else if (oldSet.length != 0){
                 alert("There is Already a Setter with this name")
             } else {
-                console.log("Added a New setter")
+               $.post('/api/setters', newSetter)
+               .then(alert(`Welcome our newest setter: ${name}`))
+               .then(() => {
+                   location.reload()
+                })
             }
             
         })
