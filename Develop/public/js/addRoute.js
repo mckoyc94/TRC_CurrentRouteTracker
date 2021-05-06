@@ -39,6 +39,23 @@ const submit = $('<button>').addClass('btn btn-primary').attr('id', 'submit').te
 // Type of Climb Being Added
 let formType = "";
 
+const loadWalls = () => {
+    boulderArea.map(wall => {
+        const newWall = `<button class="dropdown-item" id='${wall}'>${wall}</button>`
+        $('#wallList').append(newWall)
+    })
+
+    leadArea.map(wall => {
+        const newWall = `<button class="dropdown-item" id='${wall}'>${wall}</button>`
+        $('#wallList').append(newWall)
+    })
+
+    for(var wall = 1; wall < 59; wall++){
+            const newWall = `<button class="dropdown-item" id='${wall}'>${wall}</button>`
+            $('#wallList').append(newWall)
+    }
+}
+
 // Adds Setters Initials to be used
 const getSetters = () => {
     $.get('api/setters/active').then(data => {
@@ -136,9 +153,27 @@ const appendForm = (type) => {
     newForm.append(titleRow).append(rowOne).append(rowTwo).append(submit) 
 }
 
+const clearWall = wall => {
+    console.log(wall)
+    if(wall === '...'){
+        alert('Please choose a valid wall')
+    } else {
+        const isBoulder = boulderArea.filter(boulder => boulder === wall)
+        if(isBoulder.length === 0){
+            console.log("Clear Top Rope Wall")
+        } else {
+            console.log('Clear Boulder Wall')
+        }
+    }
+}
+
 // Loads Designated Form based on Drop Down Menu
 $('.dropdown-item').click(e => {
     e.target.id === 'boulderClick' ? appendForm('boulder') : appendForm()
+})
+
+$('#wallList').on('click', 'button', e => {
+    clearWall(e.target.id)
 })
 
 // Adds Climbs to Database when Submit Button is Clicked
@@ -194,3 +229,4 @@ newForm.on('click', 'button', event => {
 
 // Loads Setters when Page Loads
 getSetters()
+loadWalls()
