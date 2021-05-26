@@ -166,6 +166,9 @@ const clearWall = wall => {
             alert(`${updateWall.location} has been cleared`)
         } else {
             console.log('Clear Boulder Wall')
+            const updateWall = {location: wall}
+            $.post('/api/boulders/clear_wall', updateWall)
+            alert(`${updateWall.location} has been cleared`)
         }
     }
 }
