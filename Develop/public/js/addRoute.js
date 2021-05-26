@@ -153,12 +153,16 @@ const appendForm = (type) => {
     newForm.append(titleRow).append(rowOne).append(rowTwo).append(submit) 
 }
 
+// Sets Walls as Inactive
 const clearWall = wall => {
-    console.log(wall)
+    // Checks if Wall is chosen
     if(wall === '...'){
         alert('Please choose a valid wall')
+    // Wall is Chosen
     } else {
+        // Checks if Chosen Wall is a Boulder or Top Rope
         const isBoulder = boulderArea.filter(boulder => boulder === wall)
+        // Appropriate API route used to clear wall and alerts User to change
         if(isBoulder.length === 0){
             console.log('Clear Top Rope Wall')
             const updateWall = {location: wall}
