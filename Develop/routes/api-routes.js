@@ -24,7 +24,7 @@ module.exports = (app) => {
 
     app.post('/api/boulders/clear_wall', ({body}, res) => {
         Boulder.updateMany({
-            location: body.wall
+            location: body.location
         },{
             $set: {active: false}
         }).then(dbBoulder => {
@@ -54,7 +54,7 @@ module.exports = (app) => {
 
     app.post('/api/topRope/clear_wall', ({body}, res) => {
         TopRope.updateMany({
-            location: body.wall
+            location: body.location
         },{
             $set: {active: false}
         }).then(dbTR => {

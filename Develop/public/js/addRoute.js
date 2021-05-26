@@ -160,7 +160,10 @@ const clearWall = wall => {
     } else {
         const isBoulder = boulderArea.filter(boulder => boulder === wall)
         if(isBoulder.length === 0){
-            console.log("Clear Top Rope Wall")
+            console.log('Clear Top Rope Wall')
+            const updateWall = {location: wall}
+            $.post('/api/topRope/clear_wall', updateWall)
+            alert(`${updateWall.location} has been cleared`)
         } else {
             console.log('Clear Boulder Wall')
         }
