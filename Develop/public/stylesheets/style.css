@@ -33,9 +33,9 @@
 #logo{
     width: 350px;
     height: 150px;
-    /* margin-left: 33%; */
 }
 
+/* Color Boxes */
 #green{
     width: 10px;
     height: 10px;
@@ -64,6 +64,55 @@
     display: inline-block;
 }
 
+#yellow{
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
+    display: inline-block;
+}
+
+#pink{
+    width: 10px;
+    height: 10px;
+    background-color: hotpink;
+    display: inline-block;
+}
+
+#orange{
+    width: 10px;
+    height: 10px;
+    background-color: orange;
+    display: inline-block;
+}
+
+#black{
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    display: inline-block;
+}
+
+#white{
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    display: inline-block;
+}
+
+#so-illgreen{
+    width: 10px;
+    height: 10px;
+    background-color: limegreen;
+    display: inline-block;
+}
+
+#brown{
+    width: 10px;
+    height: 10px;
+    background-color: brown;
+    display: inline-block;
+}
+
 #listTitle{
     background-color: grey;
     color:honeydew
@@ -81,4 +130,14 @@
 #oldSetter {
     background-color: #474343;
     color:whitesmoke;
+}
+
+#targetTable {
+    font-size: x-small;
+    text-align: center;
+}
+
+#setterTable {
+    font-size: x-small;
+    text-align: center;
 }
