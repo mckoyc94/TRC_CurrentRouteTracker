@@ -113,6 +113,10 @@
     display: inline-block;
 }
 
+#climbListItem{
+    background-color: burlywood;
+}
+
 #listTitle{
     background-color: grey;
     color:honeydew

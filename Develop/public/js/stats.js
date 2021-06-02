@@ -64,7 +64,7 @@ const updatePage = climb => {
                 } else {
                     climbColorId = climbColor.toLowerCase()
                 }
-                const newListItem = `<li class="list-group-item">
+                const newListItem = `<li class="list-group-item" id = "climbListItem">
                 <strong>Location:</strong> ${location} <strong>Climb Color: </strong> <div id ="${climbColorId}"></div>
                 <br>
                 <strong>Grade:</strong> ${tapeColor} Tape
@@ -90,7 +90,7 @@ const updatePage = climb => {
                 } else {
                     climbColorId = climbColor.toLowerCase()
                 }
-                const newListItem = `<li class="list-group-item">
+                const newListItem = `<li class="list-group-item" id = "climbListItem">
                 <strong>Location:</strong> ${location} <strong>Climb Color: </strong> <div id ="${climbColorId}"></div>
                 <br>
                 <strong>Grade:</strong> ${grade}
