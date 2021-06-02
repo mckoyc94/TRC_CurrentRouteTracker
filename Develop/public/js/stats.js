@@ -37,17 +37,25 @@ let hasChanged;
 let formType;
 
 const updatePage = climb => {
-    console.log("Going to Update Page")
     $("#climbList").removeClass("hide")
+    $("#climbList").empty()
     $("#date").removeClass("hide")
     $("#totalClimbs").removeClass("hide")
     $("#targetTable").removeClass("hide")
+    $("#targetBody").empty()
     $("#setterTable").removeClass("hide")
+    $("#setterBody").empty()
     $("#myChart").removeClass("hide")
 
+    const listTitle = `<li class="list-group-item" id="listTitle"><Strong>Current Routes in Gym</Strong></li>`
+    $("#climbList").append(listTitle)
+
+    $("#cardDate").text(moment().format('dddd MMMM Do YYYY'))
+
     if(climb === 'Boulder'){
-        console.log("Adding Boulders")
         $.get('/api/boulders/sorted', data => {
+            const numClimb = data.length
+            $("#totalClimbSpan").text(numClimb)
             data.map(boulder => {
                 const {location, setter, tapeColor, climbColor} = boulder
                 let climbColorId;
@@ -69,8 +77,11 @@ const updatePage = climb => {
             })
         })
     } else {
-        console.log("Adding TR")
         $.get('/api/topRope/sorted', data => {
+            
+            const numClimb = data.length
+            $("#totalClimbSpan").text(numClimb)
+
             data.map(tR => {
                 const {location, setter, grade, climbColor} = tR
                 let climbColorId;

@@ -41,42 +41,6 @@
                 <li class="list-group-item" id="listTitle">
                     <Strong>Current Routes in Gym</Strong>
                 </li>
-                <!-- <li class="list-group-item">
-                    <strong>Location:</strong> 45 Wall <strong>Climb Color: </strong> <div id ="green"></div>
-                    <br>
-                    <strong>Grade:</strong> Blue Tape
-                    </br>
-                    <strong>Setter:</strong> JJF
-                    <button class="listButton">Edit</button>
-                    </br>
-                </li>
-                <li class="list-group-item">
-                    <strong>Location:</strong> 45 Wall <strong>Climb Color: </strong> <div id ="blue"></div>
-                    <br>
-                    <strong>Grade:</strong> Pink tape
-                    </br>
-                    <strong>Setter:</strong> JJF
-                    <button class="listButton">Edit</button>
-                    </br>
-                </li>
-                <li class="list-group-item">
-                    <strong>Location:</strong> 45 Wall <strong>Climb Color: </strong> <div id ="purple"></div>
-                    <br>
-                    <strong>Grade:</strong> Green tape
-                    </br>
-                    <strong>Setter:</strong> ZAC
-                    <button class="listButton">Edit</button>
-                    </br>
-                </li>
-                <li class="list-group-item">
-                    <strong>Location:</strong> 45 Wall <strong>Climb Color: </strong> <div id ="red"></div>
-                    <br>
-                    <strong>Grade:</strong> Yellow tape
-                    </br>
-                    <strong>Setter:</strong> XJT
-                    <button class="listButton">Edit</button>
-                    </br>
-                </li> -->
             </ul>
         </div>
         <div class="col-lg-8">
@@ -102,14 +66,14 @@
                 <div class="card col-lg-4 hide" id="date">
                     <div class="card-body">
                       <h5 class="card-title">Today's Date</h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Monday, March 29th 2021</h6>
+                      <h6 class="card-subtitle mb-2 text-muted" id="cardDate"></h6>
                     </div>
                 </div>
                 <!-- Card -->
                 <div class="card col-lg-4 hide" id="totalClimbs">
                     <div class="card-body">
                         <!-- # of Climbs in Specified Range -->
-                        <Strong>Total Climbs:</Strong> 4
+                        <Strong>Total Climbs:</Strong> <span id="totalClimbSpan"></span>
                         <!-- Average Age of Climbs in Specified Range -->
                         <br><strong>Average Age of Climbs:</strong> 12 days
                         <!-- Median Age of Climbs in Specified Range -->
@@ -130,6 +94,8 @@
                             <th scope="col">Actual Dist.</th>
                         </tr>
                     </thead>
+                    <tbody id="targetBody">
+                    </tbody>
                 </table>
                 <!-- # of Climbs by Setters -->
                 <table class="table table-bordered col-lg-4 hide" id = "setterTable">
@@ -137,6 +103,8 @@
                         <th scope="col">Setter</th>
                         <th scope="col">Total Climbs</th>
                     </thead>
+                    <tbody id="setterBody">
+                    </tbody>
                 </table>
             </div>
             <div class="row">
