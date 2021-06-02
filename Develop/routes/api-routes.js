@@ -49,6 +49,14 @@ module.exports = (app) => {
         .catch(err => res.json(err))
     })
 
+    app.get('/api/topRope/sorted', (req, res) => {
+        TopRope.find({active: true}).sort({location: 1}) 
+        .then(dbBoulder => {
+            res.json(dbBoulder)
+        })
+        .catch(err => res.json(err))
+    })
+
     app.post('/api/topRope', ({body}, res) => {
         TopRope.create(body)
         .then(({_id, setter}) => Setter.findOneAndUpdate({initials: setter}, {$push: {top_rope: _id} }, {new: true}))

@@ -50,15 +50,14 @@ const updatePage = climb => {
         $.get('/api/boulders/sorted', data => {
             data.map(boulder => {
                 const {location, setter, tapeColor, climbColor} = boulder
-                let climbID;
+                let climbColorId;
                 if(climbColor === "So-Ill Green"){
-                    climbID = "so-illgreen"
+                    climbColorId = "so-illgreen"
                 } else {
-                    climbID = climbColor.toLowerCase()
-                    console.log(climbID)
+                    climbColorId = climbColor.toLowerCase()
                 }
                 const newListItem = `<li class="list-group-item">
-                <strong>Location:</strong> ${location} <strong>Climb Color: </strong> <div id ="${climbID}"></div>
+                <strong>Location:</strong> ${location} <strong>Climb Color: </strong> <div id ="${climbColorId}"></div>
                 <br>
                 <strong>Grade:</strong> ${tapeColor} Tape
                 </br>
@@ -69,8 +68,29 @@ const updatePage = climb => {
                 $('#climbList').append(newListItem)
             })
         })
-    } else{
+    } else {
         console.log("Adding TR")
+        $.get('/api/topRope/sorted', data => {
+            data.map(tR => {
+                const {location, setter, grade, climbColor} = tR
+                let climbColorId;
+                if(climbColor === "So-Ill Green"){
+                    climbColorId = "so-illgreen"
+                } else {
+                    climbColorId = climbColor.toLowerCase()
+                }
+                const newListItem = `<li class="list-group-item">
+                <strong>Location:</strong> ${location} <strong>Climb Color: </strong> <div id ="${climbColorId}"></div>
+                <br>
+                <strong>Grade:</strong> ${grade}
+                </br>
+                <strong>Setter:</strong> ${setter}
+                <button class="listButton">Edit</button>
+                </br>
+                </li>`
+                $('#climbList').append(newListItem)
+            })
+        })
     }
 
 
