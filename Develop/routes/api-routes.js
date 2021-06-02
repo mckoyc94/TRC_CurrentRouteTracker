@@ -11,6 +11,14 @@ module.exports = (app) => {
         .catch(err => res.json(err))
     })
 
+    app.get('/api/boulders/sorted', (req, res) => {
+        Boulder.find({active: true}).sort({location: 1}) 
+        .then(dbBoulder => {
+            res.json(dbBoulder)
+        })
+        .catch(err => res.json(err))
+    })
+
     app.post('/api/boulders', ({body}, res) => {
         Boulder.create(body)
         .then(({_id, setter}) => Setter.findOneAndUpdate({initials: setter}, {$push: {boulders: _id} }, {new: true}))

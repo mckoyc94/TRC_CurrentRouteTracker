@@ -47,10 +47,30 @@ const updatePage = climb => {
 
     if(climb === 'Boulder'){
         console.log("Adding Boulders")
-    } else if (climb === "Top Rope/Lead"){
-        console.log("Adding TR")
+        $.get('/api/boulders/sorted', data => {
+            data.map(boulder => {
+                const {location, setter, tapeColor, climbColor} = boulder
+                let climbID;
+                if(climbColor === "So-Ill Green"){
+                    climbID = "so-illgreen"
+                } else {
+                    climbID = climbColor.toLowerCase()
+                    console.log(climbID)
+                }
+                const newListItem = `<li class="list-group-item">
+                <strong>Location:</strong> ${location} <strong>Climb Color: </strong> <div id ="${climbID}"></div>
+                <br>
+                <strong>Grade:</strong> ${tapeColor} Tape
+                </br>
+                <strong>Setter:</strong> ${setter}
+                <button class="listButton">Edit</button>
+                </br>
+                </li>`
+                $('#climbList').append(newListItem)
+            })
+        })
     } else{
-        console.log("An Error has occured")
+        console.log("Adding TR")
     }
 
 
