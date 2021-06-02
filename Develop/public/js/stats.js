@@ -1,5 +1,6 @@
 // On page elements
 const filter = $('#filter');
+const ctx = document.getElementById('myChart').getContext('2d');
 // Locations
 const boulderArea = ["...","M-Wall", "Nook", "The Roof", "Outer Volcano", "OG 45", "Volcano", "Beast Roof", "New 45", "Small Slab", "Big Slab"]
 const leadArea = ["...","D", "E", "F", "G", "H", "I", "J", "K", "O", "P"]
@@ -33,12 +34,26 @@ const setterLabel = $('<label>').text("Setter")
 const setterInput = $('<select>').addClass('form-control').attr('id', 'setter')
 // Operator for Submit Button
 let hasChanged;
+let formType;
 
-const updatePage = () => {
+const updatePage = climb => {
     console.log("Going to Update Page")
     $("#climbList").removeClass("hide")
     $("#date").removeClass("hide")
     $("#totalClimbs").removeClass("hide")
+    $("#targetTable").removeClass("hide")
+    $("#setterTable").removeClass("hide")
+    $("#myChart").removeClass("hide")
+
+    if(climb === 'Boulder'){
+        console.log("Adding Boulders")
+    } else if (climb === "Top Rope/Lead"){
+        console.log("Adding TR")
+    } else{
+        console.log("An Error has occured")
+    }
+
+
 
 }
 
@@ -50,7 +65,7 @@ const updateForm = climb => {
     gradeInput.empty()
     locationInput.empty()
     routeInput.empty()
-    if (climb === 'boulder'){
+    if (climb === 'Boulder'){
          // Creates Tape Color Section
          tapeColor.append(tapeLabel).append(gradeInput)
 
@@ -110,19 +125,24 @@ const updateForm = climb => {
     rowTwo.append(routeColor).append(locations).append(setter)
 
     $("#rowOne").append(rowTwo)
-    updatePage()
+    updatePage(climb)
 }
 
 filter.on("click", 'button', event => {
-    let type = $('#inputType').val();
+    formType = $('#inputType').val();
     
     event.preventDefault();
 
-    if(hasChanged){
-        type === "Boulder" ? updateForm('boulder') : type === "Top Rope/Lead" ? updateForm() : console.log("Choose a Climb")   
+    if(formType !== "Boulder" && formType !== "Top Rope/Lead"){
+        alert("Please Choose What Data You'd Like to See")
     } else {
-        updatePage()
+        if(hasChanged){
+           updateForm(formType)
+        } else {
+            updatePage(formType)
+        }
     }
+
 
 })
 
@@ -133,3 +153,28 @@ filter.on("change", "select", event => {
         hasChanged = true;
     }
 })
+
+// Chart Data
+const chart = new Chart(ctx, {
+    // Chart Type
+    type: 'bar',
+
+    // Dataset
+    data: {
+        labels: ['7', '8', '9', '10a', '10b', '10c', '10d', '11a', '11b', '11c', '11d', '12a', '12b', '12c', '12d', '13a'],
+        datasets: [{
+            label: 'Test table',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [4, 7, 9, 11, 8, 10, 4, 5, 9, 7, 5, 2, 2]
+        },{
+            label: 'Test table 2',
+            backgroundColor: 'blue',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [6, 5, 11, 8, 12, 6, 8, 3, 2, 5, 7, 2, 1, 1, 1, 1]
+        }]
+    },
+
+    // Additional Options for Chart
+    options: {}
+});
