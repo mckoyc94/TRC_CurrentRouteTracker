@@ -75,6 +75,30 @@ const updatePage = climb => {
                 </li>`
                 $('#climbList').append(newListItem)
             })
+            boulderColors.map(grade => {
+                if(grade != "..."){
+                    const numOfClimbs = data.filter(climb => climb.tapeColor === grade)
+                    const newRow = `<tr>
+                        <th scope="col">${grade}</th>
+                        <th scope="col"></th>
+                        <th scope="col">${numOfClimbs.length}</th>
+                        <th scope="col"></th> 
+                        <th scope="col"></th>
+                        <th scope="col">${((numOfClimbs.length/data.length)*100).toFixed(2)}%</th>
+                    </tr>`
+                    $('#targetBody').append(newRow)
+                }
+            })
+            setters.map(setter => {
+                if(setter != "..."){
+                    const numOfClimbsSet = data.filter(climb => climb.setter === setter)
+                    const newRow = `<tr>
+                        <th scope="col">${setter}</th>
+                        <th scope="col">${numOfClimbsSet.length}</th>
+                    </tr>`
+                    $('#setterBody').append(newRow)
+                }
+            })
         })
     } else {
         $.get('/api/topRope/sorted', data => {
