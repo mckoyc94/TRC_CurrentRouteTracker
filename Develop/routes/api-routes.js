@@ -20,7 +20,7 @@ module.exports = (app) => {
     })
 
     app.get('/api/boulders/oldest', (req, res) => {
-        Boulder.find().sort({ "date" : 1 }).limit(1)
+        Boulder.find({"active":true}).sort({ "date" : 1 }).limit(1)
         .then(dbBoulder =>{
             res.json(dbBoulder)
         })
@@ -66,7 +66,7 @@ module.exports = (app) => {
     })
 
     app.get('/api/topRope/oldest', (req, res) => {
-        TopRope.find().sort({ "date" : 1 }).limit(1)
+        TopRope.find({"active":true}).sort({ "date" : 1 }).limit(1)
         .then(dbTR =>{
             res.json(dbTR)
         })
