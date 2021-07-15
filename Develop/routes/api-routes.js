@@ -19,6 +19,14 @@ module.exports = (app) => {
         .catch(err => res.json(err))
     })
 
+    app.get('/api/boulders/oldest', (req, res) => {
+        Boulder.find().sort({ "date" : 1 }).limit(1)
+        .then(dbBoulder =>{
+            res.json(dbBoulder)
+        })
+        .catch(err => res.json(err))
+    })
+
     app.post('/api/boulders', ({body}, res) => {
         Boulder.create(body)
         .then(({_id, setter}) => Setter.findOneAndUpdate({initials: setter}, {$push: {boulders: _id} }, {new: true}))
@@ -51,8 +59,16 @@ module.exports = (app) => {
 
     app.get('/api/topRope/sorted', (req, res) => {
         TopRope.find({active: true}).sort({location: 1}) 
-        .then(dbBoulder => {
-            res.json(dbBoulder)
+        .then(dbTR => {
+            res.json(dbTR)
+        })
+        .catch(err => res.json(err))
+    })
+
+    app.get('/api/topRope/oldest', (req, res) => {
+        TopRope.find().sort({ "date" : 1 }).limit(1)
+        .then(dbTR =>{
+            res.json(dbTR)
         })
         .catch(err => res.json(err))
     })
