@@ -114,7 +114,14 @@ const appendForm = (type) => {
             locationInput.append(newOption)
         })
         for(let i = 1; i < 59; i++){
-            let newOption = $('<option>').text(i)
+            let newOption = $('<option>')
+            if(i < 10){
+                const num = "0"+i
+                newOption.text(num)
+                locationInput.append(newOption)
+            } else {
+                newOption.text(i)
+            }
             locationInput.append(newOption)
         }
 
