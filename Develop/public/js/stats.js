@@ -100,6 +100,11 @@ const updatePage = climb => {
                 }
             })
         })
+        $.get('/api/boulders/oldest', oldestClimb => {
+            const {date} = oldestClimb[0]
+            const oldDate = dateConverter(date)
+            $('#oldClimb').text(moment(oldDate).format('dddd MMMM Do YYYY'))
+        })
     } else {
         $.get('/api/topRope/sorted', data => {
             
@@ -127,9 +132,12 @@ const updatePage = climb => {
             })
         })
     }
+}
 
-
-
+const dateConverter = date => {
+    const d = date.split('')
+    const finalDate = d[0]+d[1]+d[2]+d[3]+d[5]+d[6]+d[8]+d[9]
+    return finalDate
 }
 
 const updateForm = climb => {
