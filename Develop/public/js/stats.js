@@ -103,8 +103,10 @@ const updatePage = climb => {
         $.get('/api/boulders/oldest', oldestClimb => {
             const {date} = oldestClimb[0]
             const oldDate = dateConverter(date)
-            $('#oldClimb').text(moment(oldDate).format('dddd MMMM Do YYYY'))
+            $('#oldClimb').text(moment(oldDate,"YYYYMMDD").fromNow())
         })
+
+        
     } else {
         $.get('/api/topRope/sorted', data => {
             

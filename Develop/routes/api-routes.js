@@ -19,12 +19,32 @@ module.exports = (app) => {
         .catch(err => res.json(err))
     })
 
+    app.get('/api/boulders/sorted/date', (req, res) => {
+        Boulder.find({active: true}).sort({date: 1})
+        .then(dbBoulder => {
+            res.json(dbBoulder)
+        })
+        .catch(err => res.json(err))
+    })
+
     app.get('/api/boulders/oldest', (req, res) => {
         Boulder.find({"active":true}).sort({ "date" : 1 }).limit(1)
         .then(dbBoulder =>{
             res.json(dbBoulder)
         })
         .catch(err => res.json(err))
+    })
+
+    app.get('/api/boulders/average', async (req, res) => {
+        const oldest = await Boulder.find({"active":true}).sort({ "date" : 1 }).limit(1)
+        const newest = await Boulder.find({"active":true}).sort({ "date" : -1 }).limit(1)
+        const range = [oldest[0], newest[0]]
+
+        try{
+            res.json(range)
+        } catch(err){
+            res.json(err)
+        }
     })
 
     app.post('/api/boulders', ({body}, res) => {
