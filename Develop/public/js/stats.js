@@ -53,11 +53,11 @@ const updatePage = climb => {
     $("#cardDate").text(moment().format('dddd MMMM Do YYYY'))
 
     if(climb === 'Boulder'){
-        $.get('/api/boulders/sorted', data => {
+        $.get('/api/boulders/sorted/walls', data => {
             const numClimb = data.length
             $("#totalClimbSpan").text(numClimb)
             data.map(boulder => {
-                const {location, setter, tapeColor, climbColor} = boulder
+                const {location, setter, tapeColor, climbColor, date} = boulder
                 let climbColorId;
                 if(climbColor === "So-Ill Green"){
                     climbColorId = "so-illgreen"
@@ -68,6 +68,8 @@ const updatePage = climb => {
                 <strong>Location:</strong> ${location} <strong>Climb Color: </strong> <div id ="${climbColorId}"></div>
                 <br>
                 <strong>Grade:</strong> ${tapeColor} Tape
+                </br>
+                <strong>Date Set: </strong> ${moment(date).format("MM/DD/YY")}
                 </br>
                 <strong>Setter:</strong> ${setter}
                 <button class="listButton">Edit</button>
@@ -102,11 +104,9 @@ const updatePage = climb => {
         })
         $.get('/api/boulders/oldest', oldestClimb => {
             const {date} = oldestClimb[0]
-            const oldDate = dateConverter(date)
-            $('#oldClimb').text(moment(oldDate,"YYYYMMDD").fromNow())
+            $('#oldClimb').text(moment(date,"YYYYMMDD").fromNow())
         })
 
-        
     } else {
         $.get('/api/topRope/sorted', data => {
             
@@ -114,7 +114,7 @@ const updatePage = climb => {
             $("#totalClimbSpan").text(numClimb)
 
             data.map(tR => {
-                const {location, setter, grade, climbColor} = tR
+                const {location, setter, grade, climbColor, date} = tR
                 let climbColorId;
                 if(climbColor === "So-Ill Green"){
                     climbColorId = "so-illgreen"
@@ -126,20 +126,46 @@ const updatePage = climb => {
                 <br>
                 <strong>Grade:</strong> ${grade}
                 </br>
+                <strong>Date Set: </strong> ${moment(date).format("MM/DD/YY")}
+                </br>
                 <strong>Setter:</strong> ${setter}
                 <button class="listButton">Edit</button>
                 </br>
                 </li>`
                 $('#climbList').append(newListItem)
             })
+
+            topRopeGrade.map(grade => {
+                if(grade != "..."){
+                    const numOfClimbs = data.filter(climb => climb.grade === grade)
+                    const newRow = `<tr>
+                        <th scope="col">${grade}</th>
+                        <th scope="col"></th>
+                        <th scope="col">${numOfClimbs.length}</th>
+                        <th scope="col"></th> 
+                        <th scope="col"></th>
+                        <th scope="col">${((numOfClimbs.length/data.length)*100).toFixed(2)}%</th>
+                    </tr>`
+                    $('#targetBody').append(newRow)
+                }
+            })
+            setters.map(setter => {
+                if(setter != "..."){
+                    const numOfClimbsSet = data.filter(climb => climb.setter === setter)
+                    const newRow = `<tr>
+                        <th scope="col">${setter}</th>
+                        <th scope="col">${numOfClimbsSet.length}</th>
+                    </tr>`
+                    $('#setterBody').append(newRow)
+                }
+            })
+
+        })
+        $.get('/api/topRope/oldest', oldestClimb => {
+            const {date} = oldestClimb[0]
+            $('#oldClimb').text(moment(date,"YYYYMMDD").fromNow())
         })
     }
-}
-
-const dateConverter = date => {
-    const d = date.split('')
-    const finalDate = d[0]+d[1]+d[2]+d[3]+d[5]+d[6]+d[8]+d[9]
-    return finalDate
 }
 
 const updateForm = climb => {
@@ -177,7 +203,14 @@ const updateForm = climb => {
             locationInput.append(newOption)
         })
         for(let i = 1; i < 59; i++){
-            let newOption = $('<option>').text(i)
+            let newOption = $('<option>')
+            if(i < 10){
+                const num = "0"+i
+                newOption.text(num)
+                locationInput.append(newOption)
+            } else {
+                newOption.text(i)
+            }
             locationInput.append(newOption)
         }
 
