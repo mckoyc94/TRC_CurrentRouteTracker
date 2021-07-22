@@ -35,18 +35,6 @@ module.exports = (app) => {
         .catch(err => res.json(err))
     })
 
-    app.get('/api/boulders/average', async (req, res) => {
-        const oldest = await Boulder.find({"active":true}).sort({ "date" : 1 }).limit(1)
-        const newest = await Boulder.find({"active":true}).sort({ "date" : -1 }).limit(1)
-        const range = [oldest[0], newest[0]]
-
-        try{
-            res.json(range)
-        } catch(err){
-            res.json(err)
-        }
-    })
-
     app.post('/api/boulders', ({body}, res) => {
         Boulder.create(body)
         .then(({_id, setter}) => Setter.findOneAndUpdate({initials: setter}, {$push: {boulders: _id} }, {new: true}))
