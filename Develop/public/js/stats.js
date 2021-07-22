@@ -7,14 +7,12 @@ const leadArea = ["...","D", "E", "F", "G", "H", "I", "J", "K", "O", "P"]
 // Colors
 const boulderColors = ["...","Blue", 'Pink', 'Green', 'Yellow', 'Orange', 'Red']
 const holdColors = ["...",'Red', 'Blue', 'Green', 'Yellow', 'Pink', 'Orange', 'Purple', 'Black', 'White', 'Brown', 'So-Ill Green']
-// Setters
-const setters = ["...",'CSP', 'CP', 'JFF', 'LK', 'XJT', 'ZAC']
 // Grades
-const topRopeGrade = ["...",'5.Fun', '7', '8', '9', '10a', '10b', '10c', '10d', '11a', '11b', '11c', '11d', '12a', '12b', '12c', '12d', '13a', '13b']
+const topRopeGrade = ["...",'5', '6', '7', '8', '9', '10a', '10b', '10c', '10d', '11a', '11b', '11c', '11d', '12a', '12b', '12c', '12d', '13a', '13b']
 // Form Row
 const rowTwo = $('<div>').addClass('form-row')
 // Boulder Grade Input
-const tapeColor = $('<div>').addClass('form-group col-md-3')
+const tapeColor = $('<div>').addClass('form-group col-lg-3')
 const tapeLabel = $('<label>').text("Tape Color")
 // Top Rope Grade Input
 const grade = $('<div>').addClass('form-group col-md-3')
@@ -91,15 +89,15 @@ const updatePage = climb => {
                     $('#targetBody').append(newRow)
                 }
             })
-            setters.map(setter => {
-                if(setter != "..."){
-                    const numOfClimbsSet = data.filter(climb => climb.setter === setter)
+            $.get('/api/setters/active', setters => {
+                setters.map(setter => {
+                    const numOfClimbsSet = data.filter(climb => climb.setter === setter.initials)
                     const newRow = `<tr>
-                        <th scope="col">${setter}</th>
+                        <th scope="col">${setter.initials}</th>
                         <th scope="col">${numOfClimbsSet.length}</th>
                     </tr>`
                     $('#setterBody').append(newRow)
-                }
+                })
             })
         })
         $.get('/api/boulders/oldest', oldestClimb => {
@@ -149,15 +147,17 @@ const updatePage = climb => {
                     $('#targetBody').append(newRow)
                 }
             })
-            setters.map(setter => {
-                if(setter != "..."){
-                    const numOfClimbsSet = data.filter(climb => climb.setter === setter)
-                    const newRow = `<tr>
-                        <th scope="col">${setter}</th>
-                        <th scope="col">${numOfClimbsSet.length}</th>
-                    </tr>`
-                    $('#setterBody').append(newRow)
-                }
+            $.get('api/setters', setters => {
+                setters.map(setter => {
+                    const numOfClimbsSet = data.filter(climb => climb.setter === setter.initials)
+                    if(numOfClimbsSet.length > 0 || setter.active === true){
+                        const newRow = `<tr>
+                            <th scope="col">${setter.initials}</th>
+                            <th scope="col">${numOfClimbsSet.length}</th>
+                        </tr>`
+                        $('#setterBody').append(newRow)
+                    }
+                })
             })
 
         })
@@ -224,9 +224,13 @@ const updateForm = climb => {
     }
 
     // Adds Setters to form
-    setters.map( initial => {
-        let newOption = $('<option>').text(initial)
-        setterInput.append(newOption)
+    let defaultOption = $('<option>').text("...")
+    setterInput.append(defaultOption)
+    $.get('/api/setters/active', setters => {
+        setters.map( setter => {
+            let newOption = $('<option>').text(setter.initials)
+            setterInput.append(newOption)
+        })
     })
 
     // Adds Hold Colors to form
