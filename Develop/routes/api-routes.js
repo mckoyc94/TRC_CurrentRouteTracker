@@ -11,16 +11,8 @@ module.exports = (app) => {
         .catch(err => res.json(err))
     })
 
-    app.get('/api/boulders/sorted/walls', (req, res) => {
+    app.get('/api/boulders/sorted', (req, res) => {
         Boulder.find({active: true}).sort({location: 1}) 
-        .then(dbBoulder => {
-            res.json(dbBoulder)
-        })
-        .catch(err => res.json(err))
-    })
-
-    app.get('/api/boulders/sorted/date', (req, res) => {
-        Boulder.find({active: true}).sort({date: 1})
         .then(dbBoulder => {
             res.json(dbBoulder)
         })

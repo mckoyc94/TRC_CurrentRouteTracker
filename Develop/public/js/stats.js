@@ -51,7 +51,7 @@ const updatePage = climb => {
     $("#cardDate").text(moment().format('dddd MMMM Do YYYY'))
 
     if(climb === 'Boulder'){
-        $.get('/api/boulders/sorted/walls', data => {
+        $.get('/api/boulders/sorted', data => {
             const numClimb = data.length
             $("#totalClimbSpan").text(numClimb)
             data.map(boulder => {
@@ -193,6 +193,8 @@ const updateForm = climb => {
          })
          // Appends Tape Color to form
          rowTwo.append(tapeColor)
+
+         boulderChart()
     } else {
         // Appends Grade Section
         grade.append(gradeLabel).append(gradeInput)
@@ -276,27 +278,68 @@ filter.on("change", "select", event => {
     }
 })
 
-// Chart Data
-const chart = new Chart(ctx, {
-    // Chart Type
-    type: 'bar',
+const boulderChart = () => {
+    $.get('/api/boulders/sorted', boulders => {
+        const blueTape = boulders.filter(boulder => boulder.tapeColor === "Blue")
+        const pinkTape = boulders.filter(boulder => boulder.tapeColor === "Pink")
+        const greenTape = boulders.filter(boulder => boulder.tapeColor === "Green")
+        const yellowTape = boulders.filter(boulder => boulder.tapeColor === "Yellow")
+        const orangeTape = boulders.filter(boulder => boulder.tapeColor === "Orange")
+        const redTape = boulders.filter(boulder => boulder.tapeColor === "Red")
 
-    // Dataset
-    data: {
-        labels: ['7', '8', '9', '10a', '10b', '10c', '10d', '11a', '11b', '11c', '11d', '12a', '12b', '12c', '12d', '13a'],
-        datasets: [{
-            label: 'Test table',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [4, 7, 9, 11, 8, 10, 4, 5, 9, 7, 5, 2, 2]
-        },{
-            label: 'Test table 2',
-            backgroundColor: 'blue',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [6, 5, 11, 8, 12, 6, 8, 3, 2, 5, 7, 2, 1, 1, 1, 1]
-        }]
-    },
+        // Chart Data
+        const chart = new Chart(ctx, {
+        // Chart Type
+        type: 'bar',
+    
+        // Dataset
+        data: {
+            labels: ['Blue Tape', 'Pink Tape', 'Green Tape', 'Yellow Tape', 'Orange Tape', 'Red Tape'],
+            datasets: [{
+                label: 'Current Routes',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [blueTape.length, pinkTape.length, greenTape.length, yellowTape.length, orangeTape.length, redTape.length]
+            },{
+                label: 'Target Routes',
+                backgroundColor: 'blue',
+                borderColor: 'rgb(255, 99, 132)',
+                data: [5, 8, 7, 6, 9, 3]
+            }]
+        },
+    
+        // Additional Options for Chart
+        options: {}
+    });
+    })
+}
 
-    // Additional Options for Chart
-    options: {}
-});
+const trChart = () => {
+    $.get('api/topRope/sorted', ropes => {
+        // Chart Data
+        const chart = new Chart(ctx, {
+            // Chart Type
+            type: 'bar',
+        
+            // Dataset
+            data: {
+                labels: ['5', '6', '7', '8', '9', '10a', '10b', '10c', '10d', '11a', '11b', '11c', '11d', '12a', '12b', '12c', '12d', '13a'],
+                datasets: [{
+                    label: 'Current Routes',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [4, 7, 9, 11, 8, 10, 4, 5, 9, 7, 5, 2, 2]
+                },{
+                    label: 'Target Routes',
+                    backgroundColor: 'blue',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [2,4,6, 5, 11, 8, 12, 6, 8, 3, 2, 5, 7, 2, 1, 1, 1, 1]
+                }]
+            },
+        
+            // Additional Options for Chart
+            options: {}
+        });
+    })
+}
+
