@@ -34,7 +34,9 @@ const setterInput = $('<select>').addClass('form-control').attr('id', 'setter')
 let hasChanged;
 let formType;
 
+// Reloads Page to show selected content
 const updatePage = climb => {
+    // Reveals Content
     $("#climbList").removeClass("hide")
     $("#climbList").empty()
     $("#date").removeClass("hide")
@@ -45,15 +47,21 @@ const updatePage = climb => {
     $("#setterBody").empty()
     $("#myChart").removeClass("hide")
 
+    // Creates Header for Route List
     const listTitle = `<li class="list-group-item" id="listTitle"><Strong>Current Routes in Gym</Strong></li>`
     $("#climbList").append(listTitle)
 
+    // Current Date
     $("#cardDate").text(moment().format('dddd MMMM Do YYYY'))
 
+    // Determines what type of climb should be loaded
     if(climb === 'Boulder'){
+        // Loads Boulder Climbs
         $.get('/api/boulders/sorted', data => {
+            // Shows # of Climbs in Gym
             const numClimb = data.length
             $("#totalClimbSpan").text(numClimb)
+            // Creates List Item to Append to Climb List
             data.map(boulder => {
                 const {location, setter, tapeColor, climbColor, date} = boulder
                 let climbColorId;
@@ -75,6 +83,7 @@ const updatePage = climb => {
                 </li>`
                 $('#climbList').append(newListItem)
             })
+            // Creates Table with Boulder Stats
             boulderColors.map(grade => {
                 if(grade != "..."){
                     const numOfClimbs = data.filter(climb => climb.tapeColor === grade)
@@ -89,6 +98,7 @@ const updatePage = climb => {
                     $('#targetBody').append(newRow)
                 }
             })
+            // Shows # of Climbs set per Setter
             $.get('/api/setters/active', setters => {
                 setters.map(setter => {
                     const numOfClimbsSet = data.filter(climb => climb.setter === setter.initials)
@@ -100,17 +110,21 @@ const updatePage = climb => {
                 })
             })
         })
+        // Shows the oldest boulder in gym
         $.get('/api/boulders/oldest', oldestClimb => {
             const {date} = oldestClimb[0]
             $('#oldClimb').text(moment(date,"YYYYMMDD").fromNow())
         })
 
     } else {
+        // Loads Top Rope Climbs
         $.get('/api/topRope/sorted', data => {
             
+            // Shows # of Climbs in Gym
             const numClimb = data.length
             $("#totalClimbSpan").text(numClimb)
 
+            // Creates List Item to Append to Climb List
             data.map(tR => {
                 const {location, setter, grade, climbColor, date} = tR
                 let climbColorId;
@@ -133,6 +147,7 @@ const updatePage = climb => {
                 $('#climbList').append(newListItem)
             })
 
+            // Creates Table with Top Rope Stats
             topRopeGrade.map(grade => {
                 if(grade != "..."){
                     const numOfClimbs = data.filter(climb => climb.grade === grade)
@@ -147,6 +162,8 @@ const updatePage = climb => {
                     $('#targetBody').append(newRow)
                 }
             })
+
+            // Shows # of Climbs set per Setter
             $.get('api/setters', setters => {
                 setters.map(setter => {
                     const numOfClimbsSet = data.filter(climb => climb.setter === setter.initials)
@@ -168,6 +185,7 @@ const updatePage = climb => {
     }
 }
 
+// Allows for Filter
 const updateForm = climb => {
     hasChanged = false;
     rowTwo.remove()
@@ -252,6 +270,7 @@ const updateForm = climb => {
     updatePage(climb)
 }
 
+// Filters Climbs underspecified Criteria
 filter.on("click", 'button', event => {
     formType = $('#inputType').val();
     
@@ -266,10 +285,9 @@ filter.on("click", 'button', event => {
             updatePage(formType)
         }
     }
-
-
 })
 
+// Tells Site that the Filter has been changed
 filter.on("change", "select", event => {
     event.preventDefault()
     if (event.target.id === 'inputType'){
@@ -278,6 +296,7 @@ filter.on("change", "select", event => {
     }
 })
 
+// Bar Graph of Boulder Routes
 const boulderChart = () => {
     $.get('/api/boulders/sorted', boulders => {
         const blueTape = boulders.filter(boulder => boulder.tapeColor === "Blue")
@@ -314,6 +333,7 @@ const boulderChart = () => {
     })
 }
 
+// Bar Graph of Top Rope Routes
 const trChart = () => {
     $.get('api/topRope/sorted', ropes => {
         // Chart Data
