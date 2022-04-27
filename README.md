@@ -1,4 +1,4 @@
-<img src="Develop/Public/Assets/App Logo.JPG" align ="right"
+<img src="ReadMe_Assets/App_Logo.JPG" align ="right"
      title="Current Route Tracker - Logo " width="15%" height="auto">
 # TRC CurrentRouteTracker
 
@@ -35,14 +35,14 @@
   * specifies grade, climb color, setter, and location in the gym
   * allows user to clear a specific wall of climbs to add new climbs
 
-<img src="ReadMe_Assets/Add_A_Climb.JPG" align = "center" title="Adding New Climb" width = "30%" height ="auto">
+<img src="ReadMe_Assets/Add_A_Climb.JPG" align = "center" title="Adding New Climb" width = "60%" height ="auto">
 
 > <b>Setters Page</b>
   * Add new setters to database
   * Deactivate/reactivate Setters as they leave or rejoin team
   * Veiw the number of climbs set by active setters
 
-<img src="ReadMe_Assets/Setters.JPG" align = "center" title="Setters Page" width = "30%" height ="auto">
+<img src="ReadMe_Assets/Setters.JPG" align = "center" title="Setters Page" width = "60%" height ="auto">
 
 > <b>Current Routes</b>
   * Veiw full list of active Top Rope/Boulder Climbs
@@ -50,7 +50,7 @@
   * Create table with the # of climbs based off grades & setters
   * Displays bar graph of current Boulder Climbs
 
-<img src="ReadMe_Assets/Current_Routes.JPG" align = "center" title="Veiwing the Climbs Database" width = "30%" height ="auto">
+<img src="ReadMe_Assets/Current_Routes.JPG" align = "center" title="Veiwing the Climbs Database" width = "60%" height ="auto">
 
 ---
 
