@@ -35,12 +35,12 @@ const loadSetters = () => {
     // Goes through Active Setters and appends them to List
     currentSet.map(setter => {
         // Traits
-        let name = setter.name;
-        let init = setter.initials;
-        let boulder = setter.boulders;
-        let tR = setter.top_rope;
+        const name = setter.name;
+        const init = setter.initials;
+        const boulder = setter.boulders;
+        const tR = setter.top_rope;
         // New List Item with Traits included
-        let newList = `
+        const newList = `
             <li class="list-group-item">
                 <strong>Name: </strong> ${name}   <strong>Initials: </strong> ${init}
                 <br>
@@ -57,9 +57,9 @@ const loadSetters = () => {
     // Filters through Inactive Setters and Adds them to List for Reactivation
     inactiveSet.map(setter => {
         // Sets Option List Item
-        let name = setter.name
-        let id = setter.id
-        let newOpt = `<option id="${id}">${name}</option>`
+        const name = setter.name
+        const id = setter.id
+        const newOpt = `<option id="${id}">${name}</option>`
 
         // Appends Item to Inactive Dropdown
         inactiveList.append(newOpt)

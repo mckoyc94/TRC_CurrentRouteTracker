@@ -50,7 +50,7 @@ const loadWalls = () => {
         $('#wallList').append(newWall)
     })
 
-    for(var wall = 1; wall < 59; wall++){
+    for(let wall = 1; wall < 59; wall++){
             const newWall = `<button class="dropdown-item" id='${wall}'>${wall}</button>`
             $('#wallList').append(newWall)
     }
@@ -200,10 +200,10 @@ newForm.on('click', 'button', event => {
     // Only Adds Climb once Submit is Clicked
     if (event.target.id === 'submit'){
         // Grabs the Values of Form
-        let newGrade = gradeInput.val()
-        let newSetter = setterInput.val()
-        let newColor = routeInput.val()
-        let newLocal = locationInput.val()
+        const newGrade = gradeInput.val()
+        const newSetter = setterInput.val()
+        const newColor = routeInput.val()
+        const newLocal = locationInput.val()
 
         // Won't add climb if any input is not filled
         if (newGrade === "..." || newSetter === "..." || newColor === "..." || newLocal === "..."){
