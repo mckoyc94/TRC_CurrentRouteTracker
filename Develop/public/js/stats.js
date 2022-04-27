@@ -182,13 +182,13 @@ const updateForm = climb => {
 
          // Adds Boulder Locations to form
          boulderArea.map(area => {
-             let newOption = $('<option>').text(area)
+             const newOption = $('<option>').text(area)
              locationInput.append(newOption)
          })
  
          // Adds Boulder Tape Colors to form
-         boulderColors.map( tape => {
-             let newOption = $('<option>').text(tape)
+         boulderColors.map(tape => {
+             const newOption = $('<option>').text(tape)
              gradeInput.append(newOption)
          })
          // Appends Tape Color to form
@@ -201,11 +201,11 @@ const updateForm = climb => {
 
         // Adds Top Rope and Lead Walls to form
         leadArea.map(area => {
-            let newOption = $('<option>').text(area)
+            const newOption = $('<option>').text(area)
             locationInput.append(newOption)
         })
         for(let i = 1; i < 59; i++){
-            let newOption = $('<option>')
+            const newOption = $('<option>')
             if(i < 10){
                 const num = "0"+i
                 newOption.text(num)
@@ -218,7 +218,7 @@ const updateForm = climb => {
 
         // Adds TR Grades to form
         topRopeGrade.map(tr => {
-            let newOption = $('<option>').text(tr)
+            const newOption = $('<option>').text(tr)
             gradeInput.append(newOption)
         })
         // Appends Grades to form
@@ -226,11 +226,11 @@ const updateForm = climb => {
     }
 
     // Adds Setters to form
-    let defaultOption = $('<option>').text("...")
+    const defaultOption = $('<option>').text("...")
     setterInput.append(defaultOption)
     $.get('/api/setters/active', setters => {
         setters.map( setter => {
-            let newOption = $('<option>').text(setter.initials)
+            const newOption = $('<option>').text(setter.initials)
             setterInput.append(newOption)
         })
     })
